@@ -25,6 +25,8 @@
 #include "Graphics/PostProcessing/Lighting/Bloom.h"
 #include "Graphics/PostProcessing/Filters/Colourise.h"
 
+#include "Physics/PhysicsEngine.h"
+
 #include "Utilities/FileUtilities.h"
 #include "Utilities/FrameRateUtilities.h"
 #include "Utilities/DebugTools/ReferenceGrid.h"
@@ -34,6 +36,7 @@ using namespace Somnium;
 using namespace Graphics;
 using namespace Maths;
 using namespace Audio;
+using namespace Physics;
 
 #ifdef WEB_BUILD
 static void startMain(void *mainFunction)
@@ -54,6 +57,8 @@ int main(int argc, char** argv) {
 	Buffers::FrameBuffer::setWindow(&myWindow);
 
 	PostProcessing::PostProcessor::initialise();
+	PhysicsEngine::initialise();
+
 	Camera mainCamera = Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0,0,0), Vector3(180, 90, 0));
 
 	Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());

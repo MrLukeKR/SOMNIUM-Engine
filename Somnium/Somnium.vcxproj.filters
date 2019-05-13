@@ -54,9 +54,6 @@
     <Filter Include="Source Files\Graphics\UI">
       <UniqueIdentifier>{5ea79a86-dde9-4d62-a037-a487fbb7239a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\DebugTools">
-      <UniqueIdentifier>{8248a912-202f-4627-8688-f87c4bbcc374}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Utilities">
       <UniqueIdentifier>{b7667a71-a790-4699-ad17-7e3ca5c028ea}</UniqueIdentifier>
     </Filter>
@@ -182,9 +179,6 @@
     <ClInclude Include="src\Graphics\UI\UIImage.h">
       <Filter>Header Files\Graphics\UI</Filter>
     </ClInclude>
-    <ClInclude Include="src\DebugTools\ReferenceGrid.h">
-      <Filter>Header Files\DebugTools</Filter>
-    </ClInclude>
     <ClInclude Include="src\Maths\Quaternion.h">
       <Filter>Header Files\Maths</Filter>
     </ClInclude>
@@ -232,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="src\Graphics\PostProcessing\Filters\Colourise.h">
       <Filter>Header Files\Graphics\PostProcessing\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Physics\PhysicsEngine.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +318,9 @@
     </ClCompile>
     <ClCompile Include="src\Graphics\PostProcessing\Filters\Colourise.cpp">
       <Filter>Source Files\Graphics\PostProcessing\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Physics\PhysicsEngine.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
