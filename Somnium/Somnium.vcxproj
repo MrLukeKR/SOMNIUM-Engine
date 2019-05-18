@@ -188,6 +188,7 @@
     <ClInclude Include="src\Graphics\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="RandomMonkeys.cpp" />
     <ClCompile Include="src\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="src\Graphics\PostProcessing\Filters\Colourise.cpp" />
     <ClCompile Include="src\Graphics\Buffers\FrameBuffer.cpp" />

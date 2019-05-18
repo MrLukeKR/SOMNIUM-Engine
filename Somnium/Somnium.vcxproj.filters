@@ -111,6 +111,9 @@
     <Filter Include="Source Files\Physics">
       <UniqueIdentifier>{c1f6bd20-2b3c-449f-be4f-e1b67dc8a3ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Examples">
+      <UniqueIdentifier>{c0aa88cd-5613-474b-b6b7-df28eebeba44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Maths\Vector3.h">
@@ -318,6 +321,9 @@
     </ClCompile>
     <ClCompile Include="src\Graphics\PostProcessing\Filters\Colourise.cpp">
       <Filter>Source Files\Graphics\PostProcessing\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomMonkeys.cpp">
+      <Filter>Source Files\Examples</Filter>
     </ClCompile>
     <ClCompile Include="src\Physics\PhysicsEngine.cpp">
       <Filter>Source Files\Physics</Filter>

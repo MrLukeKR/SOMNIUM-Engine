@@ -62,8 +62,6 @@ int main(int argc, char** argv) {
 	Camera mainCamera = Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0,0,0), Vector3(180, 90, 0));
 
 	Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
-
-	Shaders::Shader* shader = new Shaders::Shader("Resources/Graphics/Shaders/PBR/basic.vs", "Resources/Graphics/Shaders/PBR/basic.fs");
 	Shaders::Shader* textShader = new Shaders::Shader("Resources/Graphics/Shaders/Basic/basicText.vs", "Resources/Graphics/Shaders/Basic/basicText.fs");
 
 	#ifdef ENABLE_DEBUG_CAMERA
@@ -72,24 +70,6 @@ int main(int argc, char** argv) {
 
 	textShader->enable();
 	textShader->setMatrix4("projection", Matrix4::orthographic(0, myWindow.getWidth(), 0, myWindow.getHeight(), -1.0f, 100.0f));
-
-	shader->enable();
-	shader->setVector3("albedo", Maths::Vector3(1, 1, 1));
-	shader->setFloat("ao", 0.01);
-	shader->setFloat("metallic", 0.9f);
-	shader->setFloat("roughness", 0.1f);
-
-	shader->setVector3("lightPositions[0]", Maths::Vector3(-10.0f, 10.0f, 10.0f));
-	shader->setVector3("lightPositions[1]", Maths::Vector3(10.0f, 10.0f, 10.0f));
-	shader->setVector3("lightPositions[2]", Maths::Vector3(-10.0f, -10.0f, 10.0f));
-	shader->setVector3("lightPositions[3]", Maths::Vector3(10.0f, -10.0f, 10.0f));
-
-	char buff[24];
-	for (unsigned int i = 0; i < 5; i++)
-	{
-		sprintf_s(buff, "lightColors[%d]", i);
-		shader->setVector3(buff, Maths::Vector3(3000.0f, 3000.0f, 3000.0f));
-	}
 
 	Buffers::FrameBuffer frameBuffer;
 
@@ -100,27 +80,14 @@ int main(int argc, char** argv) {
 
 	Matrix4 view = Matrix4::identity();
 
-	Mesh monkeyMesh = Mesh(Utilities::File::loadOBJ("Resources/Graphics/Objects/Monkey.obj", *shader));
-
 	std::vector<RenderableObject*> objects;
-
-	for(int i = 0; i < 50; i++)
-		objects.push_back(new RenderableObject(new Mesh(monkeyMesh)));
+	
+	Networking::Centralised::Server* myServer = new Networking::Centralised::Server();
+	myServer->run();
 
 	Renderers::SerialRenderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
 
-	for (RenderableObject* object : objects)
-	{
-		float scale = (float)rand() / RAND_MAX;
-		object->setScale(scale, scale, scale);
-		object->setPosition((float)rand() / RAND_MAX * 10 * ((rand() % 2) ? 1 : -1), (float)rand() / RAND_MAX * 10 * ((rand() % 2) ? 1 : -1), (float)rand() / RAND_MAX * -50.0f);
-	}
-
 	cout << "---------RUNNING GAME LOOP---------" << endl;
-
-	Networking::Centralised::Server* myServer = new Networking::Centralised::Server();
-
-	myServer->run();
 
 #ifdef WEB_BUILD
 	function<void()> webMain = [&]() {
@@ -139,32 +106,15 @@ int main(int argc, char** argv) {
 
 		//2. Update objects
 
-		static float monkeyZPos = 0;
-		static float offset = -0.001f;
-
-		if (monkeyZPos >= 0.1)  offset = -0.001f;
-		else if (monkeyZPos <= -0.1) offset = 0.001f;
-
-		monkeyZPos += offset;
-
 		//renderer->beginMapping();
 
 		for (RenderableObject* object : objects)
-		{
-			
-			float xRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-			float yRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-			float zRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-
-			object->move((rand() % 2) ? 1 : -1, (rand() % 2) ? 1 : -1, (rand() % 2) ? 1 : -1, 0.1f);
-			object->rotate(xRot, yRot, zRot); //TODO: Setup a glPop/glPushMatrix() functionality system
-			
+		{			
 			renderer->submitToQueue(object);
 		}
 
 		renderer->updateCamera();
-		shader->enable();
-		shader->setVector3("lightPositions[4]", mainCamera.getPosition());
+
 		//3. Draw objects
 		//renderer->endMapping();
 		frameBuffer.clear();
@@ -177,14 +127,7 @@ int main(int argc, char** argv) {
 		frameBuffer.unbind();
 
 		//DO POST PROCESSING
-		PostProcessing::PostProcessor::submitToQueue(Graphics::PostProcessing::Lighting::Bloom::getInstance());
-		static float hue = 0;
-		
-		PostProcessing::PostProcessor::submitToQueue(Graphics::PostProcessing::Filters::Colourise::apply(sin(hue), sin(hue + 120), sin(hue + 240), 1));
-		hue+=0.01f;
-
 		PostProcessing::PostProcessor::process(&frameBuffer);
-
 		Graphics::PostProcessing::PostProcessor::drawScreen();
 #endif
 
