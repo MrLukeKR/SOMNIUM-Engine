@@ -1,5 +1,7 @@
 #pragma once
 
+#include <chrono>
+
 #ifdef WEB_BUILD
 	#define GLFW_INCLUDE_ES3
 	#include <GLFW/glfw3.h>
@@ -7,6 +9,7 @@
 	#include <glew.h>
 #endif
 
+#define DELTA_UPDATE 0.01f // Update every DELTA_UPDATE seconds
 
 namespace Somnium
 {
@@ -15,6 +18,10 @@ namespace Somnium
 		namespace FrameRate
 		{
 			double startTime = 0;
+			double currTime = 0;
+			double deltaTime = 0;
+			double prevTime = 0;
+			bool   updateLogic = false;
 			unsigned int fps;
 			float timePerFrame;
 			char fpsUI[128];
@@ -54,6 +61,18 @@ namespace Somnium
 			void update()
 			{
 				calculateFPS(fps, timePerFrame);
+			}
+
+			bool canUpdate()
+			{
+				currTime = glfwGetTime();
+				deltaTime = currTime - prevTime;
+				updateLogic = deltaTime >= DELTA_UPDATE;
+
+				if (updateLogic)
+					prevTime = currTime;
+
+				return updateLogic;
 			}
 
 			unsigned int& getFPS() { return fps; }

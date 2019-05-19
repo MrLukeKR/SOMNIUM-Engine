@@ -6,7 +6,7 @@
 #endif
 
 #define DISABLE_POST_PROCESSING true
-#define LIMIT_FRAMERATE true
+#define LIMIT_FRAMERATE false
 
 #include "Audio/AudioEngine.h"
 
@@ -34,11 +34,13 @@
 
 #include "Logic/Game.h"
 #include "Examples/RandomMonkeys.h"
+#include "Examples/PhysicsMonkeys.h"
 
 using namespace Somnium;
-using namespace Graphics;
-using namespace Maths;
 using namespace Audio;
+using namespace Graphics;
+using namespace Logic;
+using namespace Maths;
 using namespace Physics;
 
 #ifdef WEB_BUILD
@@ -92,7 +94,7 @@ int main(int argc, char** argv) {
 
 	Renderers::SerialRenderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
 
-	currentGame = new RandomMonkeys();
+	currentGame = new PhysicsMonkeys();
 
 	if (!currentGame)
 	{
@@ -109,6 +111,7 @@ int main(int argc, char** argv) {
 #ifdef WEB_BUILD
 	function<void()> webMain = [&]() {
 #else
+
 	while (!myWindow.isClosed())
 	{
 #endif
@@ -122,14 +125,17 @@ int main(int argc, char** argv) {
 		myWindow.getMousePosition(x, y);
 
 		//2. Update objects
-		currentGame->tick(x, y);
+
+		if (Utilities::FrameRate::canUpdate())
+		{
+			currentGame->tick(x, y);
+			renderer->updateCamera();
+		}
 
 		//renderer->beginMapping();
 
-		for (RenderableObject* object : currentGame->getObjects())
-			renderer->submitToQueue(object);
-
-		renderer->updateCamera();
+		for (auto object : currentGame->getObjects())
+			renderer->submitToQueue(object.second);
 
 		//3. Draw objects
 		//renderer->endMapping();
@@ -148,6 +154,7 @@ int main(int argc, char** argv) {
 #endif
 
 		Utilities::FrameRate::update();
+
 #ifdef ENABLE_DEBUG_CAMERA
 		Utilities::Debug::drawReferenceGrid();
 		Utilities::Debug::updateDebugCamera();

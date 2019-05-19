@@ -1,13 +1,17 @@
 #include "PhysicsEngine.h"
 
-
-namespace Physics {
-	PhysicsEngine::PhysicsEngine()
+namespace Somnium
+{
+	namespace Logic
 	{
-	}
+		namespace Physics {
+			PhysicsEngine::PhysicsEngine()
+			{
+			}
 
-
-	PhysicsEngine::~PhysicsEngine()
-	{
+			PhysicsEngine::~PhysicsEngine()
+			{
+			}
+		}
 	}
 }

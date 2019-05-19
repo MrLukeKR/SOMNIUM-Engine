@@ -120,6 +120,9 @@
     <Filter Include="Header Files\Examples">
       <UniqueIdentifier>{c0aa88cd-5613-474b-b6b7-df28eebeba44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Examples\Templates">
+      <UniqueIdentifier>{49518960-88f4-4820-893b-d95aeeef9580}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Window.h">
@@ -242,6 +245,21 @@
     <ClInclude Include="src\Logic\Game.h">
       <Filter>Header Files\Logic</Filter>
     </ClInclude>
+    <ClInclude Include="src\Examples\PhysicsMonkeys.h">
+      <Filter>Header Files\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\Compatability.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\DebugUtilities.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\FrameRateUtilities.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Physics\RigidBody.h">
+      <Filter>Header Files\Logic\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -336,6 +354,9 @@
     </ClCompile>
     <ClCompile Include="src\Examples\RandomMonkeys.h">
       <Filter>Header Files\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logic\Physics\RigidBody.cpp">
+      <Filter>Source Files\Logic\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

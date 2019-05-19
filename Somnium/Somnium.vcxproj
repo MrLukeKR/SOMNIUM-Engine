@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Logic\Physics\RigidBody.h" />
+    <ClInclude Include="src\Examples\PhysicsMonkeys.h" />
     <ClInclude Include="src\Logic\Game.h" />
     <ClInclude Include="src\Logic\Physics\PhysicsEngine.h" />
     <ClInclude Include="src\Graphics\PostProcessing\Filters\Colourise.h" />
@@ -179,7 +181,9 @@
     <ClInclude Include="src\Networking\Centralised\Server.h" />
     <ClInclude Include="src\Networking\Decentralised\Peer.h" />
     <ClInclude Include="src\Networking\NetworkEntity.h" />
+    <ClInclude Include="src\Utilities\Compatability.h" />
     <ClInclude Include="src\Utilities\DebugTools\ReferenceGrid.h" />
+    <ClInclude Include="src\Utilities\DebugUtilities.h" />
     <ClInclude Include="src\Utilities\FileUtilities.h" />
     <ClInclude Include="src\Logic\Maths\Matrix4.h" />
     <ClInclude Include="src\Graphics\Shaders\Shader.h" />
@@ -187,8 +191,10 @@
     <ClInclude Include="src\Logic\Maths\Vector3.h" />
     <ClInclude Include="src\Logic\Maths\Vector4.h" />
     <ClInclude Include="src\Graphics\Window.h" />
+    <ClInclude Include="src\Utilities\FrameRateUtilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Logic\Physics\RigidBody.cpp" />
     <ClCompile Include="src\Examples\RandomMonkeys.h" />
     <ClCompile Include="src\Logic\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="src\Graphics\PostProcessing\Filters\Colourise.cpp" />

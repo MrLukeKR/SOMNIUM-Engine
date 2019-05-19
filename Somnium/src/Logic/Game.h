@@ -3,6 +3,7 @@
 #include "../Graphics/Camera.h"
 #include "../Graphics/RenderableObject.h"
 #include "../Graphics/Shaders/Shader.h"
+#include "../Logic/Physics/PhysicsEngine.h"
 
 namespace Somnium 
 {
@@ -13,8 +14,7 @@ namespace Somnium
 		virtual void init(Graphics::Window& myWindow) {};
 		virtual void tick(int mouseX, int mouseY) {};
 		
-		
-		std::vector<Graphics::RenderableObject*> getObjects() { return m_Objects; }
+		const std::map<char*, Graphics::RenderableObject*>& getObjects() const { return m_Objects; }
 		const std::string& getName() const { return m_GameName; }
 
 	protected:
@@ -24,7 +24,7 @@ namespace Somnium
 		virtual ~Game() 
 		{
 			delete m_MainCamera;
-			for (auto obj : m_Objects) delete obj;
+			for (auto obj : m_Objects) delete obj.second;
 			for (auto mesh = m_Meshes.begin(); mesh != m_Meshes.end(); mesh ++) delete mesh->second;
 			for (auto shader = m_Shaders.begin(); shader != m_Shaders.end(); shader++) delete shader->second;
 
@@ -36,7 +36,11 @@ namespace Somnium
 	protected:
 		std::string m_GameName;
 		Graphics::Camera* m_MainCamera = NULL;
-		std::vector<Graphics::RenderableObject*> m_Objects;
+		Logic::Physics::PhysicsEngine* m_PhysicsEngine = NULL;
+		
+		std::map<char*, Graphics::Camera*> m_Cameras;
+		std::map<char*, Graphics::Font*> m_Fonts;
+		std::map<char*, Graphics::RenderableObject*> m_Objects;
 		std::map<char*, Graphics::Mesh*> m_Meshes;
 		std::map<char*, Graphics::Shaders::Shader*> m_Shaders;
 	};
