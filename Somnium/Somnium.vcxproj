@@ -147,7 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Physics\PhysicsEngine.h" />
+    <ClInclude Include="src\Logic\Game.h" />
+    <ClInclude Include="src\Logic\Physics\PhysicsEngine.h" />
     <ClInclude Include="src\Graphics\PostProcessing\Filters\Colourise.h" />
     <ClInclude Include="src\Audio\AudioEngine.h" />
     <ClInclude Include="src\Graphics\Buffers\Buffer.h" />
@@ -165,7 +166,7 @@
     <ClInclude Include="src\Graphics\Buffers\IndexBuffer.h" />
     <ClInclude Include="src\Graphics\Buffers\VertexArray.h" />
     <ClInclude Include="src\Graphics\Camera.h" />
-    <ClInclude Include="src\Maths\Maths.h" />
+    <ClInclude Include="src\Logic\Maths\Maths.h" />
     <ClInclude Include="src\Graphics\Mesh.h" />
     <ClInclude Include="src\Graphics\RenderableObject.h" />
     <ClInclude Include="src\Graphics\Renderers\SerialRenderer.h" />
@@ -173,23 +174,23 @@
     <ClInclude Include="src\Graphics\UI\UIText.h" />
     <ClInclude Include="src\Graphics\UI\UIImage.h" />
     <ClInclude Include="src\Graphics\UI\UIObject.h" />
-    <ClInclude Include="src\Maths\Quaternion.h" />
+    <ClInclude Include="src\Logic\Maths\Quaternion.h" />
     <ClInclude Include="src\Networking\Centralised\Client.h" />
     <ClInclude Include="src\Networking\Centralised\Server.h" />
     <ClInclude Include="src\Networking\Decentralised\Peer.h" />
     <ClInclude Include="src\Networking\NetworkEntity.h" />
     <ClInclude Include="src\Utilities\DebugTools\ReferenceGrid.h" />
     <ClInclude Include="src\Utilities\FileUtilities.h" />
-    <ClInclude Include="src\Maths\Matrix4.h" />
+    <ClInclude Include="src\Logic\Maths\Matrix4.h" />
     <ClInclude Include="src\Graphics\Shaders\Shader.h" />
-    <ClInclude Include="src\Maths\Vector2.h" />
-    <ClInclude Include="src\Maths\Vector3.h" />
-    <ClInclude Include="src\Maths\Vector4.h" />
+    <ClInclude Include="src\Logic\Maths\Vector2.h" />
+    <ClInclude Include="src\Logic\Maths\Vector3.h" />
+    <ClInclude Include="src\Logic\Maths\Vector4.h" />
     <ClInclude Include="src\Graphics\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RandomMonkeys.cpp" />
-    <ClCompile Include="src\Physics\PhysicsEngine.cpp" />
+    <ClCompile Include="src\Examples\RandomMonkeys.h" />
+    <ClCompile Include="src\Logic\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="src\Graphics\PostProcessing\Filters\Colourise.cpp" />
     <ClCompile Include="src\Graphics\Buffers\FrameBuffer.cpp" />
     <ClCompile Include="src\Graphics\Buffers\RenderBuffer.cpp" />
@@ -206,16 +207,16 @@
     <ClCompile Include="src\Graphics\Camera.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Graphics\Shaders\Shader.cpp" />
-    <ClCompile Include="src\Maths\Vector2.cpp" />
+    <ClCompile Include="src\Logic\Maths\Vector2.cpp" />
     <ClCompile Include="src\Graphics\Window.cpp" />
-    <ClCompile Include="src\Maths\Vector3.cpp" />
-    <ClCompile Include="src\Maths\Vector4.cpp" />
-    <ClCompile Include="src\Maths\Matrix4.cpp" />
+    <ClCompile Include="src\Logic\Maths\Vector3.cpp" />
+    <ClCompile Include="src\Logic\Maths\Vector4.cpp" />
+    <ClCompile Include="src\Logic\Maths\Matrix4.cpp" />
     <ClCompile Include="src\Graphics\Mesh.cpp" />
     <ClCompile Include="src\Graphics\Renderers\SerialRenderer.cpp" />
     <ClCompile Include="src\Graphics\RenderableObject.cpp" />
     <ClCompile Include="src\Graphics\UI\UIText.cpp" />
-    <ClCompile Include="src\Maths\Quaternion.cpp" />
+    <ClCompile Include="src\Logic\Maths\Quaternion.cpp" />
     <ClCompile Include="src\Networking\Centralised\Client.cpp" />
     <ClCompile Include="src\Networking\Centralised\Server.cpp" />
     <ClCompile Include="src\Utilities\DebugTools\ReferenceGrid.cpp" />

@@ -7,7 +7,7 @@
 	#include <glew.h> 
 #endif
 
-#include "../Maths/Maths.h"
+#include "../Logic/Maths/Maths.h"
 #include "Shaders/Shader.h"
 #include "Buffers/IndexBuffer.h"
 #include "Buffers/VertexArray.h"

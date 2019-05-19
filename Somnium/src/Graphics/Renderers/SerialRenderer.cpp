@@ -1,5 +1,5 @@
 #include "SerialRenderer.h"
-#include "../../Maths/Maths.h"
+#include "../../Logic/Maths/Maths.h"
 
 namespace Somnium
 {

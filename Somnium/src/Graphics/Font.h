@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Maths/Vector2.h"
+#include "../Logic/Maths/Vector2.h"
 #ifdef WEB_BUILD 
 	#define GLFW_INCLUDE_ES3
 #else 

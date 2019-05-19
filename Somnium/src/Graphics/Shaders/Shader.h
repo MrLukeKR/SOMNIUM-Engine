@@ -9,7 +9,8 @@
 #else 
 	#include <glew.h> 
 #endif
-#include "../../Maths/Maths.h"
+
+#include "../../Logic/Maths/Maths.h"
 
 #ifdef WEB_BUILD
 	#define CHAR char

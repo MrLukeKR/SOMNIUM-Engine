@@ -15,20 +15,8 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{3f862874-7dda-43e8-83a3-7f14f6577c43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Input">
-      <UniqueIdentifier>{4a5cd680-3f1d-4a38-82d6-f8a287577545}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Input">
-      <UniqueIdentifier>{568ab5d9-f1f5-44f4-b6f6-15a13a2c4e14}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{ddb1fd72-2759-49c5-9b7b-460050614843}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Maths">
-      <UniqueIdentifier>{70adc5d9-4c41-4bc6-9941-8578470bd77b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Maths">
-      <UniqueIdentifier>{7c0051b2-9638-43cd-a181-eb2d42079baf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Audio">
       <UniqueIdentifier>{2b45acd4-1e23-4a00-8d3d-598abf2cc37d}</UniqueIdentifier>
@@ -105,37 +93,40 @@
     <Filter Include="Header Files\Graphics\PostProcessing\Lighting">
       <UniqueIdentifier>{26e6e5d9-d47e-4592-b9e9-652ec13b177d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Physics">
-      <UniqueIdentifier>{b7a09940-665c-4527-ae51-1a4ca979e585}</UniqueIdentifier>
+    <Filter Include="Header Files\Logic">
+      <UniqueIdentifier>{8c7bf6a6-a921-4ac7-b13a-39238ebad6b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Physics">
+    <Filter Include="Source Files\Logic">
+      <UniqueIdentifier>{e1f8e9a1-5725-4c75-8153-ba1f9719aa3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logic\Input">
+      <UniqueIdentifier>{568ab5d9-f1f5-44f4-b6f6-15a13a2c4e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logic\Maths">
+      <UniqueIdentifier>{7c0051b2-9638-43cd-a181-eb2d42079baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logic\Physics">
       <UniqueIdentifier>{c1f6bd20-2b3c-449f-be4f-e1b67dc8a3ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Examples">
+    <Filter Include="Header Files\Logic\Physics">
+      <UniqueIdentifier>{b7a09940-665c-4527-ae51-1a4ca979e585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Logic\Input">
+      <UniqueIdentifier>{4a5cd680-3f1d-4a38-82d6-f8a287577545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Logic\Maths">
+      <UniqueIdentifier>{70adc5d9-4c41-4bc6-9941-8578470bd77b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Examples">
       <UniqueIdentifier>{c0aa88cd-5613-474b-b6b7-df28eebeba44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Maths\Vector3.h">
-      <Filter>Header Files\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Maths\Vector4.h">
-      <Filter>Header Files\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Maths\Vector2.h">
-      <Filter>Header Files\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Maths\Matrix4.h">
-      <Filter>Header Files\Maths</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphics\Window.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\Utilities\FileUtilities.h">
       <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Maths\Maths.h">
-      <Filter>Header Files\Maths</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics\Mesh.h">
       <Filter>Header Files\Graphics</Filter>
@@ -182,9 +173,6 @@
     <ClInclude Include="src\Graphics\UI\UIImage.h">
       <Filter>Header Files\Graphics\UI</Filter>
     </ClInclude>
-    <ClInclude Include="src\Maths\Quaternion.h">
-      <Filter>Header Files\Maths</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphics\Buffers\Buffer.h">
       <Filter>Header Files\Graphics\Buffers</Filter>
     </ClInclude>
@@ -230,28 +218,37 @@
     <ClInclude Include="src\Graphics\PostProcessing\Filters\Colourise.h">
       <Filter>Header Files\Graphics\PostProcessing\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="src\Physics\PhysicsEngine.h">
-      <Filter>Header Files\Physics</Filter>
+    <ClInclude Include="src\Logic\Maths\Maths.h">
+      <Filter>Header Files\Logic\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Maths\Matrix4.h">
+      <Filter>Header Files\Logic\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Maths\Quaternion.h">
+      <Filter>Header Files\Logic\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Maths\Vector2.h">
+      <Filter>Header Files\Logic\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Maths\Vector3.h">
+      <Filter>Header Files\Logic\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Maths\Vector4.h">
+      <Filter>Header Files\Logic\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Physics\PhysicsEngine.h">
+      <Filter>Header Files\Logic\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Game.h">
+      <Filter>Header Files\Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Maths\Vector2.cpp">
-      <Filter>Source Files\Maths</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graphics\Window.cpp">
       <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Maths\Vector3.cpp">
-      <Filter>Source Files\Maths</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Maths\Vector4.cpp">
-      <Filter>Source Files\Maths</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Maths\Matrix4.cpp">
-      <Filter>Source Files\Maths</Filter>
     </ClCompile>
     <ClCompile Include="src\Graphics\Mesh.cpp">
       <Filter>Source Files\Graphics</Filter>
@@ -286,9 +283,6 @@
     <ClCompile Include="src\Graphics\UI\UIText.cpp">
       <Filter>Source Files\Graphics\UI</Filter>
     </ClCompile>
-    <ClCompile Include="src\Maths\Quaternion.cpp">
-      <Filter>Source Files\Maths</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graphics\Buffers\FrameBuffer.cpp">
       <Filter>Source Files\Graphics\Buffers</Filter>
     </ClCompile>
@@ -322,11 +316,26 @@
     <ClCompile Include="src\Graphics\PostProcessing\Filters\Colourise.cpp">
       <Filter>Source Files\Graphics\PostProcessing\Filters</Filter>
     </ClCompile>
-    <ClCompile Include="RandomMonkeys.cpp">
-      <Filter>Source Files\Examples</Filter>
+    <ClCompile Include="src\Logic\Maths\Matrix4.cpp">
+      <Filter>Source Files\Logic\Maths</Filter>
     </ClCompile>
-    <ClCompile Include="src\Physics\PhysicsEngine.cpp">
-      <Filter>Source Files\Physics</Filter>
+    <ClCompile Include="src\Logic\Maths\Quaternion.cpp">
+      <Filter>Source Files\Logic\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logic\Maths\Vector2.cpp">
+      <Filter>Source Files\Logic\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logic\Maths\Vector3.cpp">
+      <Filter>Source Files\Logic\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logic\Maths\Vector4.cpp">
+      <Filter>Source Files\Logic\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logic\Physics\PhysicsEngine.cpp">
+      <Filter>Source Files\Logic\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\RandomMonkeys.h">
+      <Filter>Header Files\Examples</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

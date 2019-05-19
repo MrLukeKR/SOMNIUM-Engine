@@ -25,12 +25,15 @@
 #include "Graphics/PostProcessing/Lighting/Bloom.h"
 #include "Graphics/PostProcessing/Filters/Colourise.h"
 
-#include "Physics/PhysicsEngine.h"
+#include "Logic/Physics/PhysicsEngine.h"
 
 #include "Utilities/FileUtilities.h"
 #include "Utilities/FrameRateUtilities.h"
 #include "Utilities/DebugTools/ReferenceGrid.h"
 #include "Utilities/DebugUtilities.h"
+
+#include "Logic/Game.h"
+#include "Examples/RandomMonkeys.h"
 
 using namespace Somnium;
 using namespace Graphics;
@@ -44,6 +47,8 @@ static void startMain(void *mainFunction)
 	(*(function<void()>*)mainFunction)();
 }
 #endif
+
+Game* currentGame = NULL;
 
 int main(int argc, char** argv) {
 	Utilities::Debug::printWelcomeMessage();
@@ -87,6 +92,18 @@ int main(int argc, char** argv) {
 
 	Renderers::SerialRenderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
 
+	currentGame = new RandomMonkeys();
+
+	if (!currentGame)
+	{
+		throw "No game was loaded";
+	}
+	else
+	{
+		currentGame->init(myWindow);
+		cout << "Loaded: '" << currentGame->getName() << "'" << endl;
+	}
+
 	cout << "---------RUNNING GAME LOOP---------" << endl;
 
 #ifdef WEB_BUILD
@@ -105,13 +122,12 @@ int main(int argc, char** argv) {
 		myWindow.getMousePosition(x, y);
 
 		//2. Update objects
+		currentGame->tick(x, y);
 
 		//renderer->beginMapping();
 
-		for (RenderableObject* object : objects)
-		{			
+		for (RenderableObject* object : currentGame->getObjects())
 			renderer->submitToQueue(object);
-		}
 
 		renderer->updateCamera();
 

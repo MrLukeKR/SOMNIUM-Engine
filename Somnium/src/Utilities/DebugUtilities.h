@@ -4,6 +4,8 @@
 #include "../Graphics/UI/UIText.h"
 #include "../Graphics/Font.h"
 #include "../Graphics/Shaders/Shader.h"
+#include "../Utilities/FrameRateUtilities.h"
+#include "../Graphics/Camera.h"
 
 namespace Somnium
 {

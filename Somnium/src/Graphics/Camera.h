@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Maths/Maths.h"
+#include "../Logic/Maths/Maths.h"
 #include "UI/UIObject.h"
 #include "UI/UIText.h"
 #include "UI/UIImage.h"

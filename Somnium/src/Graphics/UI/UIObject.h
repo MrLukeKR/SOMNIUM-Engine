@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Maths/Vector2.h"
+#include "../../Logic/Maths/Vector2.h"
 #include "../../Graphics/Shaders/Shader.h"
 #include "../Buffers/VertexArray.h"
 #include "../Buffers/VertexBuffer.h"
