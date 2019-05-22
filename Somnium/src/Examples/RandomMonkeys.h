@@ -90,17 +90,12 @@ public:
 		}
 	}
 
-	void tick(int mouseX, int mouseY)
+	void tick(float deltaTime)
 	{
 		//1. Get logic input	
 		//2. Update objects
-		static float monkeyZPos = 0;
-		static float offset = -0.001f;
+		static float offset = 0.1f * deltaTime;
 
-		if (monkeyZPos >= 0.1)  offset = -0.001f;
-		else if (monkeyZPos <= -0.1) offset = 0.001f;
-
-		monkeyZPos += offset;
 
 		//renderer->beginMapping();
 
@@ -108,11 +103,11 @@ public:
 		{
 			RenderableObject* object = iterObj.second;
 
-			float xRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-			float yRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-			float zRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
+			float xRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1) * offset;
+			float yRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1) * offset;
+			float zRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1) * offset;
 
-			object->move((rand() % 2) ? 1 : -1, (rand() % 2) ? 1 : -1, (rand() % 2) ? 1 : -1, 0.1f);
+			object->move((rand() % 2) ? 1 : -1 , (rand() % 2) ? 1 : -1, (rand() % 2) ? 1 : -1, offset / 10);
 			object->rotate(xRot, yRot, zRot); //TODO: Setup a glPop/glPushMatrix() functionality system
 		}
 

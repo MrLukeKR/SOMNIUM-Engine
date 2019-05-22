@@ -63,10 +63,14 @@ namespace Somnium
 				calculateFPS(fps, timePerFrame);
 			}
 
-			bool canUpdate()
+			void updateDeltaTime()
 			{
 				currTime = glfwGetTime();
 				deltaTime = currTime - prevTime;
+			}
+
+			bool canUpdate()
+			{
 				updateLogic = deltaTime >= DELTA_UPDATE;
 
 				if (updateLogic)

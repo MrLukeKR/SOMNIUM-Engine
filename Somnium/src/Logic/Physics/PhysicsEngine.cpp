@@ -4,7 +4,8 @@ namespace Somnium
 {
 	namespace Logic
 	{
-		namespace Physics {
+		namespace Physics 
+		{
 			PhysicsEngine::PhysicsEngine()
 			{
 			}

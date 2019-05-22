@@ -120,9 +120,6 @@
     <Filter Include="Header Files\Examples">
       <UniqueIdentifier>{c0aa88cd-5613-474b-b6b7-df28eebeba44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Examples\Templates">
-      <UniqueIdentifier>{49518960-88f4-4820-893b-d95aeeef9580}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Window.h">
@@ -258,6 +255,9 @@
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\Logic\Physics\RigidBody.h">
+      <Filter>Header Files\Logic\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logic\Physics\PhysicsObject.h">
       <Filter>Header Files\Logic\Physics</Filter>
     </ClInclude>
   </ItemGroup>

@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Logic\Physics\PhysicsObject.h" />
     <ClInclude Include="src\Logic\Physics\RigidBody.h" />
     <ClInclude Include="src\Examples\PhysicsMonkeys.h" />
     <ClInclude Include="src\Logic\Game.h" />

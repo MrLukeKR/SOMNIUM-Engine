@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
 	Buffers::FrameBuffer::setWindow(&myWindow);
 
 	PostProcessing::PostProcessor::initialise();
-	PhysicsEngine::initialise();
+	
 
 	Camera mainCamera = Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0,0,0), Vector3(180, 90, 0));
 
@@ -93,13 +93,12 @@ int main(int argc, char** argv) {
 	myServer->run();
 
 	Renderers::SerialRenderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
+	PhysicsEngine* physics = new PhysicsEngine();
 
 	currentGame = new PhysicsMonkeys();
 
 	if (!currentGame)
-	{
 		throw "No game was loaded";
-	}
 	else
 	{
 		currentGame->init(myWindow);
@@ -125,17 +124,18 @@ int main(int argc, char** argv) {
 		myWindow.getMousePosition(x, y);
 
 		//2. Update objects
-
-		if (Utilities::FrameRate::canUpdate())
-		{
-			currentGame->tick(x, y);
-			renderer->updateCamera();
-		}
+		Utilities::FrameRate::updateDeltaTime();
+		
+		currentGame->tick(Utilities::FrameRate::deltaTime);
+		renderer->updateCamera(Utilities::FrameRate::deltaTime);
+		
+		physics->update(Utilities::FrameRate::deltaTime);
 
 		//renderer->beginMapping();
 
-		for (auto object : currentGame->getObjects())
-			renderer->submitToQueue(object.second);
+		renderer->submitToQueue(currentGame->getObjects());
+		physics->submitToQueue(currentGame->getObjects());
+
 
 		//3. Draw objects
 		//renderer->endMapping();

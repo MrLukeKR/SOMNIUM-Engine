@@ -1,12 +1,20 @@
 #include "RigidBody.h"
 
-
-
-RigidBody::RigidBody()
+namespace Somnium
 {
-}
+	namespace Logic
+	{
+		namespace Physics
+		{
+			RigidBody::RigidBody()
+			{
 
+			}
 
-RigidBody::~RigidBody()
-{
+			RigidBody::~RigidBody()
+			{
+
+			}
+		}
+	}
 }

@@ -2,6 +2,12 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <map>
+
+#include "PhysicsObject.h"
+#include "../Maths/Vector3.h"
+#include "../../Graphics/RenderableObject.h"
 
 namespace Somnium
 {
@@ -15,13 +21,25 @@ namespace Somnium
 				PhysicsEngine();
 				~PhysicsEngine();
 
-				static void initialise()
+				void update(float deltaTime)
 				{
-					std::cout << "--------[INITIALISING PHYSICS]--------" << std::endl;
 
-					std::cout << " SOMNIUM Physics Engine " << PhysicsEngine::getVersion() << std::endl;
+				}
 
-					std::cout << "--------------------------------------" << std::endl;
+				void submitToQueue(PhysicsObject* object)
+				{
+
+				}
+
+				void submitToQueue(std::vector<PhysicsObject*> objects)
+				{
+
+				}
+
+				void submitToQueue(std::map<char*, Graphics::RenderableObject*> objects)
+				{
+					//for (auto object : objects)
+						//submitToQueue(object->getPhysicsObjects());
 				}
 
 				static std::string getVersion()
@@ -34,9 +52,12 @@ namespace Somnium
 					return version;
 				}
 
+			protected:
+				Maths::Vector3 gravity = Maths::Vector3(0, -9.8f, 0);
+
 			private:
 				static const int VERSION_MAJOR = 0, VERSION_MINOR = 1;
 			};
 		}
 	}
-}
+};

@@ -21,9 +21,10 @@ namespace Somnium
 				virtual ~Renderer() {};
 
 				virtual void submitToQueue(RenderableObject* object) = 0;
+				virtual void submitToQueue(std::map<char*, RenderableObject*> objects) = 0;
 				virtual void render(bool flushQueue = false) = 0;
 
-				void updateCamera()
+				void updateCamera(float deltaTime)
 				{
 					//Process Keyboard input
 
@@ -47,9 +48,9 @@ namespace Somnium
 					}
 
 					if(m_Window.isKeyPressed(GLFW_KEY_LEFT_SHIFT))
-						m_Camera.setSpeedMultiplier(3);
+						m_Camera.setSpeedMultiplier(0.2f * deltaTime);
 					else
-						m_Camera.setSpeedMultiplier(1);
+						m_Camera.setSpeedMultiplier(0.1f * deltaTime);
 						
 
 					Maths::Vector3 cameraPos = m_Camera.getPosition();

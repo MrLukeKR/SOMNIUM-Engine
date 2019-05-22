@@ -12,7 +12,7 @@ namespace Somnium
 
 	public:
 		virtual void init(Graphics::Window& myWindow) {};
-		virtual void tick(int mouseX, int mouseY) {};
+		virtual void tick(float deltaTime) {};
 		
 		const std::map<char*, Graphics::RenderableObject*>& getObjects() const { return m_Objects; }
 		const std::string& getName() const { return m_GameName; }

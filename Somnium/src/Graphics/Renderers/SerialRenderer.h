@@ -21,6 +21,7 @@ namespace Somnium
 				SerialRenderer(const Window& window, Camera& camera)
 					: Renderer(window, camera) {};
 				virtual void submitToQueue(RenderableObject* object) { m_RenderQueue.push(object); }
+				virtual void submitToQueue(std::map<char*, RenderableObject*> objects) { for (auto object : objects) m_RenderQueue.push(object.second); }
 				virtual void render(bool flushQueue = false);
 
 			private:
