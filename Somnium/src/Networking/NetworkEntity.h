@@ -10,6 +10,7 @@
 #include <string>
 #include <cerrno>
 #include <iostream>
+#include "../Utilities/Compatability.h"
 
 namespace Somnium
 {
@@ -52,7 +53,7 @@ namespace Somnium
 
 							char errorMessage[1024];
 
-							strerror_s(errorMessage, errno);
+							STRERROR(errorMessage, errno);
 
 							std::cerr << errorMessage << std::endl;
 						}
