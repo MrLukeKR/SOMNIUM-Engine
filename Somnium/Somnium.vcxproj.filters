@@ -260,6 +260,18 @@
     <ClInclude Include="src\Logic\Physics\PhysicsObject.h">
       <Filter>Header Files\Logic\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="src\Examples\LookingMonkeys.h">
+      <Filter>Header Files\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\AllExamples.h">
+      <Filter>Header Files\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\FollowingMonkeys.h">
+      <Filter>Header Files\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\PathfindingMonkeys.h">
+      <Filter>Header Files\Examples</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">

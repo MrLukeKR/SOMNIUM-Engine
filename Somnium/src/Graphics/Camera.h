@@ -70,7 +70,10 @@ namespace Somnium
 				m_Up = Maths::Vector3(0, 1, 0),
 				m_Front = Maths::Vector3(0, 0, -1);
 
-			unsigned int m_FieldOfView = 45;
+			unsigned int m_FieldOfView = 45,
+						 m_MaxFieldOfView = 179,
+			             m_MinFieldOfView = 1;
+
 			float
 				m_AspectRatio,
 				m_Near = 0.1f,

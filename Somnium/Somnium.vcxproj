@@ -147,6 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Examples\AllExamples.h" />
+    <ClInclude Include="src\Examples\FollowingMonkeys.h" />
+    <ClInclude Include="src\Examples\LookingMonkeys.h" />
+    <ClInclude Include="src\Examples\PathfindingMonkeys.h" />
     <ClInclude Include="src\Logic\Physics\PhysicsObject.h" />
     <ClInclude Include="src\Logic\Physics\RigidBody.h" />
     <ClInclude Include="src\Examples\PhysicsMonkeys.h" />

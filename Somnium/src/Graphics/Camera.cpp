@@ -13,7 +13,7 @@ namespace Somnium
 
 		void Camera::setFOV(const float fov)
 		{
-			if (fov >= 1.f && fov <= 45.f) m_FieldOfView = fov;
+			if (fov >= m_MinFieldOfView && fov <= m_MaxFieldOfView) m_FieldOfView = fov;
 			updateProjection();
 		}
 

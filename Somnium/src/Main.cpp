@@ -33,8 +33,8 @@
 #include "Utilities/DebugUtilities.h"
 
 #include "Logic/Game.h"
-#include "Examples/RandomMonkeys.h"
-#include "Examples/PhysicsMonkeys.h"
+
+#include "Examples/AllExamples.h"
 
 using namespace Somnium;
 using namespace Audio;
@@ -64,7 +64,6 @@ int main(int argc, char** argv) {
 	Buffers::FrameBuffer::setWindow(&myWindow);
 
 	PostProcessing::PostProcessor::initialise();
-	
 
 	Camera mainCamera = Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0,0,0), Vector3(180, 90, 0));
 
@@ -85,8 +84,6 @@ int main(int argc, char** argv) {
 	Utilities::Debug::initialiseReferenceGrid(naviShader, 5, Maths::Vector3(10000));
 #endif
 
-	Matrix4 view = Matrix4::identity();
-
 	std::vector<RenderableObject*> objects;
 	
 	Networking::Centralised::Server* myServer = new Networking::Centralised::Server();
@@ -95,7 +92,7 @@ int main(int argc, char** argv) {
 	Renderers::SerialRenderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
 	PhysicsEngine* physics = new PhysicsEngine();
 
-	currentGame = new PhysicsMonkeys();
+	currentGame = new FollowingMonkeys();
 
 	if (!currentGame)
 		throw "No game was loaded";
@@ -149,6 +146,13 @@ int main(int argc, char** argv) {
 		frameBuffer.unbind();
 
 		//DO POST PROCESSING
+		//	1. Submit effects to queue
+		static float hue = 0;
+
+		PostProcessing::PostProcessor::submitToQueue(Graphics::PostProcessing::Filters::Colourise::apply(sin(hue), sin(hue + 120), sin(hue + 240), 1));
+		hue += 0.01f;
+
+		//	2. Process queue
 		PostProcessing::PostProcessor::process(&frameBuffer);
 		Graphics::PostProcessing::PostProcessor::drawScreen();
 #endif

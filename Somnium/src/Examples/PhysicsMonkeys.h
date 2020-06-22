@@ -25,6 +25,10 @@ class PhysicsMonkeys : public Game
 public:
 	PhysicsMonkeys() : Game("Physics Monkeys") {}
 
+	/*
+	This example will spawn a set of monkeys in set positions and apply a physics simulation to each of them
+	*/
+
 	void init(Window& myWindow) {
 		m_PhysicsEngine = new Logic::Physics::PhysicsEngine();
 		

@@ -59,7 +59,7 @@ namespace Somnium
 		{
 			Maths::Vector3 direction = Maths::Vector3::dot(m_Position, destination);
 
-			cout << "POSITION: " << m_Position.toString() << endl;
+			cout << "POSITION: " << m_Position.toString() << "\tDESTINATION: " << destination.toString() << endl;
 
 			m_Mesh->translate(direction * amount);
 		}

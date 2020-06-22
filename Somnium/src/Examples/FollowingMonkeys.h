@@ -20,14 +20,14 @@ using namespace Somnium;
 using namespace Graphics;
 using namespace Maths;
 
-class RandomMonkeys : public Game
+class FollowingMonkeys : public Game
 {
 public:
-	RandomMonkeys() : Game("Random Monkeys") {}
+	FollowingMonkeys() : Game("Following Monkeys") {}
 
 	/*
-	This example will spawn a set of monkeys in random positions and rapidly alter their position and rotation, much
-	like molecule simulations in phase change demonstrations
+	This example will spawn a set of monkeys in random positions and slowly set each to follow 
+	the camera, eventually converging together if camera movement is not applied.
 	*/
 
 	void init(Window& myWindow) {
@@ -73,9 +73,9 @@ public:
 
 		const char objectName[24] = "monkey";
 		
-		const int numOfMonkeys = 1000;
+		const int numOfMonkeys = 100;
 
-		const float bounds[] = { 50.f, 50.f, -100.f };
+		const float bounds[] = { 10.f, 10.f, -50.f };
 
 		for (unsigned int i = 0; i < numOfMonkeys ; i++)
 		{
@@ -112,12 +112,8 @@ public:
 		{
 			RenderableObject* object = iterObj.second;
 
-			float xRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-			float yRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-			float zRot = (float)rand() / RAND_MAX * ((rand() % 2) ? 1 : -1);
-
-			object->move((rand() % 2) ? 1 : -1 , (rand() % 2) ? 1 : -1, (rand() % 2) ? 1 : -1, offset);
-			object->rotate(xRot, yRot, zRot); //TODO: Setup a glPop/glPushMatrix() functionality system
+			object->moveTowards(m_MainCamera->getPosition(), 10);
+			//TODO: Make move-towards monkeys (the above doesn't seem to work as intended)
 		}
 
 		Graphics::Shaders::Shader * shader = m_Shaders.at("PBR/basic");
