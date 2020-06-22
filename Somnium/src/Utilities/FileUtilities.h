@@ -107,7 +107,7 @@ namespace Somnium
 					//If the structure is an Object Name...
 					else if (header == "o")
 					{
-						cout << "OBJECT NAMES NOT IMPLEMENTED YET!" << endl;
+						cerr << "OBJECT NAMES NOT IMPLEMENTED YET!" << endl;
 					}
 					//If the structure is a Texture Coordinate...
 					else if (header == "vt")
@@ -153,12 +153,12 @@ namespace Somnium
 					//If the structure is a Parameter Space Vertex...
 					else if (header == "vp")
 					{
-						cout << "PARAMETER SPACE VERTICES NOT IMPLEMENTED YET!" << endl;
+						cerr << "PARAMETER SPACE VERTICES NOT IMPLEMENTED YET!" << endl;
 					}
 					//If the structure is a Line...
 					else if (header == "l")
 					{
-						cout << "LINES NOT IMPLEMENTED YET!" << endl;
+						cerr << "LINES NOT IMPLEMENTED YET!" << endl;
 					}
 					//Ignore comments and check if the structure is unknown or invalid...
 					else if (header != "#")

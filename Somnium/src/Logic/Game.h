@@ -18,7 +18,7 @@ namespace Somnium
 		const std::string& getName() const { return m_GameName; }
 
 	protected:
-		Game(std::string gameName) {};
+		Game(std::string gameName) : m_GameName{gameName} {};
 		Game(const Game& gameToCopy) {};
 		Game(Game&& gameToMove) {};
 		virtual ~Game() 

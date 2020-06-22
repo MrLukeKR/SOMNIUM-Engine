@@ -1,14 +1,5 @@
-# SOMNIUM [![Build Status](https://travis-ci.org/LUMACAL/Somnium-Engine.svg?branch=development)](https://travis-ci.org/LUMACAL/Somnium-Engine)
-A game engine focusing on breathtaking visuals, ultra-realistic audio and unparalleled scripting for a life-like experience.
-
-## [LUMACAL Software Group](https://www.LUMACAL.co.uk)
-[**Luke K. Rose**](http://www.GitHub.com/MrLukeKR) *Graphics Engineer & Lead Programmer*  
-[**Matthew C. Mansell**](https://github.com/matthewmansell) *Audio Engineer*  
-[**Callum M. Berger**](http://www.GitHub.com/CBerger1997) *Logic Programmer*  
-[**Kesava Uthaya-Kumaran**](http://www.GitHub.com/kesava321) *Documentation*
-
-## External Collaborators
-**Jemma J. Rose** *Designer*
+# SOMNIUM [![Build Status](https://travis-ci.com/MrLukeKR/SOMNIUM-Engine.svg?branch=development)](https://travis-ci.org/MrLukeKR/SOMNIUM-Engine)
+A game engine focusing on breath-taking visuals, ultra-realistic audio and unparalleled scripting for a life-like experience.
 
 ## Additional Reading
 |Subject|Website|What Is It For?|

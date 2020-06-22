@@ -20,8 +20,7 @@ namespace Somnium
 
 			void printWelcomeMessage()
 			{
-				std::cout << "SOMNIUM by LUMACAL Software Group - Built " << __TIMESTAMP__ << std::endl;
-				std::cout << "Please file any bug reports at www.GitHub.com/LUMACAL/Somnium-Engine/issues/new" << std::endl << std::endl;
+				std::cout << "SOMNIUM Engine by MrLukeKR - Built " << __TIMESTAMP__ << std::endl;
 			}
 
 			void initialiseReferenceGrid(Graphics::Shaders::Shader* gridShader, const float& divisionSize, const Maths::Vector3& gridSize)
