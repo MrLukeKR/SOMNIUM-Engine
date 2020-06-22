@@ -1,4 +1,3 @@
-#include "Utilities/Compatability.h"
 #include <iostream>
 #include <set>
 

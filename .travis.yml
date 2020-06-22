@@ -8,7 +8,7 @@ sudo: required
 before_script:
     - sudo add-apt-repository ppa:keithw/glfw3 -y
     - sudo apt-get update
-    - sudo apt-get install libglfw3-dev libglew-dev
+    - sudo apt-get install libglfw3-dev libglew-dev x11-xserver-utils
     - cd Somnium
 notifications:
   slack:
