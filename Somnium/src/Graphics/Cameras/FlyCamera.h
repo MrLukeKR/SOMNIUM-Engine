@@ -16,12 +16,7 @@ namespace Somnium
 			{
 				/* Methods */
 			public:
-				FlyCamera(const float fieldOfView, const float aspectRatio, const float near = 0.1f, const float far = 0.1f, const bool orthographic = false, Maths::Vector3 position = Maths::Vector3(), Maths::Vector3 orientation = Maths::Vector3())
-					: Camera(fieldOfView, aspectRatio, near, far, orthographic, position, orientation) 
-				{
-					m_MaxPitch = 359;
-					m_MinPitch = 91;
-				};
+				FlyCamera(const float fieldOfView, const float aspectRatio, const float near = 0.1f, const float far = 0.1f, const bool orthographic = false, Maths::Vector3 position = Maths::Vector3(), Maths::Vector3 orientation = Maths::Vector3());
 
 				~FlyCamera() {};				
 
