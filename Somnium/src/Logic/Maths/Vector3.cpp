@@ -67,6 +67,9 @@ namespace Somnium
 
 		Vector3 Vector3::normalise() const
 		{
+			if (x == 0 && y == 0 && z == 0)
+				return Vector3(0, 0, 0);
+
 			double mag = magnitude();
 			return Vector3(x / mag, y / mag, z / mag);
 		}

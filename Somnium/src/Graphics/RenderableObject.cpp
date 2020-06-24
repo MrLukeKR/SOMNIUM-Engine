@@ -63,5 +63,21 @@ namespace Somnium
 
 			m_Mesh->translate(direction * amount);
 		}
+
+		void RenderableObject::lookAt(Maths::Vector3 destination)
+		{
+			Maths::Vector3 delta = (destination - m_Position).normalise();
+
+			float cosA = m_Position.dot(destination);
+
+			float angle = Maths::clamp(cosA, -1.f, 1.f);
+
+			Maths::Vector3 axis = Maths::toDegrees(acos(cosA));
+			
+			Maths::Vector3 pos = m_Position;
+			setPosition(0, 0, 0);
+			//setOrientation(axis * angle);
+			//setPosition(pos);
+		}
 	}
 }

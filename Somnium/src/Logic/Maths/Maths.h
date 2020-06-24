@@ -6,13 +6,20 @@
 #include "Matrix4.h"
 #include <math.h>
 
+#define PI 3.14159265358979323846f
+
 namespace Somnium
 {
 	namespace Maths
 	{
 		inline float toRadians(float degrees)
 		{
-			return degrees * (3.14159265358979323846f / 180.0f);
+			return degrees * (PI / 180.0f);
+		}
+
+		inline float toDegrees(float radians)
+		{
+			return radians * (180.0f / PI);
 		}
 
 		template<typename Type, typename T1, typename T2>

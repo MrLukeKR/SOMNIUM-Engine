@@ -56,6 +56,9 @@ namespace Somnium
 
 		Vector4 Vector4::normalise() const
 		{
+			if (x == 0 && y == 0 && z == 0 && w == 0)
+				return Vector4(0, 0, 0, 0);
+
 			double mag = magnitude();
 			return Vector4(x / mag, y / mag, z / mag, w / mag);
 		}

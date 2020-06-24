@@ -120,6 +120,12 @@
     <Filter Include="Header Files\Examples">
       <UniqueIdentifier>{c0aa88cd-5613-474b-b6b7-df28eebeba44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graphics\Cameras">
+      <UniqueIdentifier>{79d84344-a9fb-4ce9-8e2f-836f39502b97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Cameras">
+      <UniqueIdentifier>{a8359fd4-674f-45e9-8e51-a9d391187995}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Window.h">
@@ -135,9 +141,6 @@
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics\RenderableObject.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\Camera.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics\Buffers\IndexBuffer.h">
@@ -272,6 +275,12 @@
     <ClInclude Include="src\Examples\PathfindingMonkeys.h">
       <Filter>Header Files\Examples</Filter>
     </ClInclude>
+    <ClInclude Include="src\Graphics\Cameras\FlyCamera.h">
+      <Filter>Header Files\Graphics\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Cameras\Camera.h">
+      <Filter>Header Files\Graphics\Cameras</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -281,9 +290,6 @@
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\Graphics\Mesh.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphics\Camera.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\Graphics\RenderableObject.cpp">
@@ -369,6 +375,9 @@
     </ClCompile>
     <ClCompile Include="src\Logic\Physics\RigidBody.cpp">
       <Filter>Source Files\Logic\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Cameras\FlyCamera.cpp">
+      <Filter>Source Files\Graphics\Cameras</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

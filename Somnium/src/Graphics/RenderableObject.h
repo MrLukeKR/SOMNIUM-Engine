@@ -23,7 +23,9 @@ namespace Somnium
 			void setPosition(float x, float y, float z);
 			void setPosition(Maths::Vector3 position) { setPosition(position.x, position.y, position.z); }
 			void setScale(float x, float y, float z);
+			void setScale(Maths::Vector3 scale) { setScale(scale.x, scale.y, scale.z); }
 			void setOrientation(float x, float y, float z);
+			void setOrientation(Maths::Vector3 orientation) { setOrientation(orientation.x, orientation.y, orientation.z); }
 
 			inline const Maths::Vector3 getPosition() const { return m_Position; }
 
@@ -35,6 +37,9 @@ namespace Somnium
 			void moveTowards(Maths::Vector3 destination, float amount);
 			void moveTowards(Maths::Vector4 movementVector) { moveTowards(Maths::Vector3(movementVector.x, movementVector.y, movementVector.z), movementVector.w); }
 			void moveTowards(float x, float y, float z, float amount) { moveTowards(Maths::Vector3(x, y, z), amount); }
+
+			void lookAt(Maths::Vector3 destination);
+			void lookAt(float x, float y, float z) { lookAt(Maths::Vector3(x, y, z)); }
 
 			void scale(float x, float y, float z) { scale(Maths::Vector3(x, y, z)); }
 			void scale(Maths::Vector3 scaleFactor);

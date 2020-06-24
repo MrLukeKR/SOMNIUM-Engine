@@ -18,7 +18,7 @@
 #include "Graphics/Renderers/BatchRenderer.h"
 #include "Graphics/Renderers/SerialRenderer.h"
 #include "Graphics/RenderableObject.h"
-#include "Graphics/Camera.h"
+#include "Graphics/Cameras/Camera.h"
 #include "Graphics/Font.h"
 
 #include "Graphics/PostProcessing/PostProcessor.h"
@@ -65,8 +65,6 @@ int main(int argc, char** argv) {
 
 	PostProcessing::PostProcessor::initialise();
 
-	Camera mainCamera = Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0,0,0), Vector3(180, 90, 0));
-
 	Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
 	Shaders::Shader* textShader = new Shaders::Shader("Resources/Graphics/Shaders/Basic/basicText.vs", "Resources/Graphics/Shaders/Basic/basicText.fs");
 
@@ -79,8 +77,14 @@ int main(int argc, char** argv) {
 
 	Buffers::FrameBuffer frameBuffer;
 
+	currentGame = new LookingMonkeys();
+
+	currentGame->init(myWindow);
+	Graphics::Cameras::Camera* mainCamera = new Graphics::Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
+	currentGame->setActiveCamera(mainCamera);
+
 #ifdef ENABLE_DEBUG_CAMERA
-	Utilities::Debug::initialiseDebugCamera(myWindow.getWidth(), myWindow.getHeight(), &mainCamera, arial, textShader);
+	Utilities::Debug::initialiseDebugCamera(myWindow.getWidth(), myWindow.getHeight(), mainCamera, arial, textShader);
 	Utilities::Debug::initialiseReferenceGrid(naviShader, 5, Maths::Vector3(10000));
 #endif
 
@@ -92,7 +96,6 @@ int main(int argc, char** argv) {
 	Renderers::SerialRenderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
 	PhysicsEngine* physics = new PhysicsEngine();
 
-	currentGame = new FollowingMonkeys();
 
 	if (!currentGame)
 		throw "No game was loaded";
@@ -165,8 +168,8 @@ int main(int argc, char** argv) {
 #endif
 
 		//4. Post Processing
-		mainCamera.updateUI();
-		mainCamera.drawUI();
+		mainCamera->updateUI();
+		mainCamera->drawUI();
 		myWindow.update();
 
 #if LIMIT_FRAMERATE

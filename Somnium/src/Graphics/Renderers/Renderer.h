@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Window.h"
-#include "../Camera.h"
+#include "../Cameras/Camera.h"
 #include "../RenderableObject.h"
 #include <queue>
 #include <iostream>
@@ -15,7 +15,7 @@ namespace Somnium
 			class Renderer
 			{
 			public:
-				Renderer(const Window& window, Camera& camera)
+				Renderer(const Window& window, Cameras::Camera* camera)
 					: m_Camera(camera), m_Window(window) {};
 
 				virtual ~Renderer() {};
@@ -29,32 +29,32 @@ namespace Somnium
 					//Process Keyboard input
 
 					if (m_Window.isKeyPressed(GLFW_KEY_LEFT) || m_Window.isKeyPressed(GLFW_KEY_A))
-						m_Camera.move(Camera::Direction::left);
+						m_Camera->move(Cameras::Camera::Direction::left);
 					if (m_Window.isKeyPressed(GLFW_KEY_RIGHT) || m_Window.isKeyPressed(GLFW_KEY_D))
-						m_Camera.move(Camera::Direction::right);
+						m_Camera->move(Cameras::Camera::Direction::right);
 					if (m_Window.isKeyPressed(GLFW_KEY_UP) || m_Window.isKeyPressed(GLFW_KEY_W))
 					{
 						if (m_Window.isKeyPressed(GLFW_KEY_LEFT_CONTROL) || m_Window.isKeyPressed(GLFW_KEY_RIGHT_CONTROL))
-							m_Camera.move(Camera::Direction::up);
+							m_Camera->move(Cameras::Camera::Direction::up);
 						else
-							m_Camera.move(Camera::Direction::forward);
+							m_Camera->move(Cameras::Camera::Direction::forward);
 					}
 					if (m_Window.isKeyPressed(GLFW_KEY_DOWN) || m_Window.isKeyPressed(GLFW_KEY_S))
 					{
 						if (m_Window.isKeyPressed(GLFW_KEY_LEFT_CONTROL) || m_Window.isKeyPressed(GLFW_KEY_RIGHT_CONTROL))
-							m_Camera.move(Camera::Direction::down);
+							m_Camera->move(Cameras::Camera::Direction::down);
 						else
-							m_Camera.move(Camera::Direction::backward);
+							m_Camera->move(Cameras::Camera::Direction::backward);
 					}
 
 					if(m_Window.isKeyPressed(GLFW_KEY_LEFT_SHIFT))
-						m_Camera.setSpeedMultiplier(0.2f * deltaTime);
+						m_Camera->setSpeedMultiplier(0.2f * deltaTime);
 					else
-						m_Camera.setSpeedMultiplier(0.1f * deltaTime);
+						m_Camera->setSpeedMultiplier(0.1f * deltaTime);
 						
 
-					Maths::Vector3 cameraPos = m_Camera.getPosition();
-					Maths::Vector3 cameraDeg = m_Camera.getOrientation();
+					Maths::Vector3 cameraPos = m_Camera->getPosition();
+					Maths::Vector3 cameraDeg = m_Camera->getOrientation();
 
 					//Process Mouse Input
 					/* Stage 1: Scroll Wheel */
@@ -67,14 +67,18 @@ namespace Somnium
 					m_Window.getMouseScroll(xScrollOffset, yScrollOffset);
 
 					if (prevYScrollOffset < yScrollOffset)
-						m_Camera.offsetFOV(1);
+						m_Camera->offsetFOV(1);
 					else if (prevYScrollOffset > yScrollOffset)
-						m_Camera.offsetFOV(-1);
+						m_Camera->offsetFOV(-1);
 
 					/* Stage 2: X/Y Offset */
-					static int mouseX = m_Window.getWidth() / 2, mouseY = m_Window.getHeight() / 2, prevMouseX = m_Window.getWidth() / 2, prevMouseY = m_Window.getHeight() / 2, xOffset, yOffset;
+					static int mouseX = m_Window.getWidth() / 2, mouseY = m_Window.getHeight() / 2;
 					
 					m_Window.getMousePosition(mouseX, mouseY);
+
+					static int prevMouseX = mouseX, prevMouseY = mouseY, xOffset, yOffset;
+					
+					
 
 					xOffset = mouseX - prevMouseX; //TODO: Some sort of axis inversion option
 					yOffset = mouseY - prevMouseY;
@@ -82,11 +86,11 @@ namespace Somnium
 					prevMouseX = mouseX;
 					prevMouseY = mouseY;
 
-					m_Camera.offsetOrientation(yOffset, xOffset);
+					m_Camera->offsetOrientation(yOffset, xOffset);
 				}
 
 			protected:
-				Camera& m_Camera;
+				Cameras::Camera* m_Camera;
 				const Window& m_Window;
 			};
 		}

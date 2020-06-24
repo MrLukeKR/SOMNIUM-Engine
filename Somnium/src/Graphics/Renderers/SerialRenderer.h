@@ -2,7 +2,7 @@
 #include <vector>
 #include <queue>
 #include "../RenderableObject.h"
-#include "../Camera.h"
+#include "../Cameras/Camera.h"
 #include "../Window.h"
 #include "Renderer.h"
 #include "../Buffers/FrameBuffer.h"
@@ -18,7 +18,7 @@ namespace Somnium
 			{
 				/* Methods */
 			public:
-				SerialRenderer(const Window& window, Camera& camera)
+				SerialRenderer(const Window& window, Cameras::Camera* camera)
 					: Renderer(window, camera) {};
 				virtual void submitToQueue(RenderableObject* object) { m_RenderQueue.push(object); }
 				virtual void submitToQueue(std::map<char*, RenderableObject*> objects) { for (auto object : objects) m_RenderQueue.push(object.second); }

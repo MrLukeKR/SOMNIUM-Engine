@@ -31,7 +31,7 @@ public:
 	*/
 
 	void init(Window& myWindow) {
-		m_MainCamera = new Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
+		//m_MainCamera = new Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
 
 		Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
 
@@ -108,18 +108,18 @@ public:
 
 		//renderer->beginMapping();
 
+		Maths::Vector3 camPos = m_MainCamera->getPosition();
+
 		for (auto iterObj : m_Objects)
 		{
 			RenderableObject* object = iterObj.second;
 
-			Maths::Matrix4 rot = Maths::Matrix4::lookAt(object->getPosition(), m_MainCamera->getPosition(), m_MainCamera->up);
-
-			//TODO: Make lookat monkeys
+			object->lookAt(camPos);
 		}
 
 		Graphics::Shaders::Shader * shader = m_Shaders.at("PBR/basic");
 		shader->enable();
-		shader->setVector3("lightPositions[4]", m_MainCamera->getPosition());
+		shader->setVector3("lightPositions[4]", camPos);
 
 		//3. Draw objects
 

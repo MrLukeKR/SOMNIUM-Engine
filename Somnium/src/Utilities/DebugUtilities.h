@@ -5,7 +5,7 @@
 #include "../Graphics/Font.h"
 #include "../Graphics/Shaders/Shader.h"
 #include "../Utilities/FrameRateUtilities.h"
-#include "../Graphics/Camera.h"
+#include "../Graphics/Cameras/Camera.h"
 
 namespace Somnium
 {
@@ -16,7 +16,7 @@ namespace Somnium
 			Graphics::UI::UIText *fpsCount, *camPos, *camRot, *camFOV, *engName, *engVer;
 			Tools::ReferenceGrid* referenceGrid;
 			Graphics::Shaders::Shader* referenceGridShader;
-			Graphics::Camera* mainCamera;
+			Graphics::Cameras::Camera* mainCamera;
 
 			void printWelcomeMessage()
 			{
@@ -37,7 +37,7 @@ namespace Somnium
 				referenceGrid->draw();
 			}
 
-			void initialiseDebugCamera(const unsigned int& windowWidth, const unsigned int& windowHeight, Graphics::Camera* camera, Graphics::Font* font, Graphics::Shaders::Shader* textShader)
+			void initialiseDebugCamera(const unsigned int& windowWidth, const unsigned int& windowHeight, Graphics::Cameras::Camera* camera, Graphics::Font* font, Graphics::Shaders::Shader* textShader)
 			{
 				mainCamera = camera;
 

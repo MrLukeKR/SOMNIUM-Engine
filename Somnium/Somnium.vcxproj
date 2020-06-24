@@ -151,6 +151,7 @@
     <ClInclude Include="src\Examples\FollowingMonkeys.h" />
     <ClInclude Include="src\Examples\LookingMonkeys.h" />
     <ClInclude Include="src\Examples\PathfindingMonkeys.h" />
+    <ClInclude Include="src\Graphics\Cameras\FlyCamera.h" />
     <ClInclude Include="src\Logic\Physics\PhysicsObject.h" />
     <ClInclude Include="src\Logic\Physics\RigidBody.h" />
     <ClInclude Include="src\Examples\PhysicsMonkeys.h" />
@@ -172,7 +173,7 @@
     <ClInclude Include="src\Graphics\Buffers\VertexBuffer.h" />
     <ClInclude Include="src\Graphics\Buffers\IndexBuffer.h" />
     <ClInclude Include="src\Graphics\Buffers\VertexArray.h" />
-    <ClInclude Include="src\Graphics\Camera.h" />
+    <ClInclude Include="src\Graphics\Cameras\Camera.h" />
     <ClInclude Include="src\Logic\Maths\Maths.h" />
     <ClInclude Include="src\Graphics\Mesh.h" />
     <ClInclude Include="src\Graphics\RenderableObject.h" />
@@ -215,7 +216,7 @@
     <ClCompile Include="src\Graphics\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="src\Graphics\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="src\Graphics\Buffers\VertexArray.cpp" />
-    <ClCompile Include="src\Graphics\Camera.cpp" />
+    <ClCompile Include="src\Graphics\Cameras\FlyCamera.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Graphics\Shaders\Shader.cpp" />
     <ClCompile Include="src\Logic\Maths\Vector2.cpp" />

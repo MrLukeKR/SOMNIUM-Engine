@@ -2,11 +2,9 @@
 #include <set>
 
 #include "../Graphics/Window.h"
-
 #include "../Graphics/Mesh.h"
-
 #include "../Graphics/Font.h"
-
+#include "../Graphics/Cameras/FlyCamera.h"
 #include "../Graphics/PostProcessing/PostProcessor.h"
 #include "../Graphics/PostProcessing/Lighting/Bloom.h"
 #include "../Graphics/PostProcessing/Filters/Colourise.h"
@@ -32,7 +30,7 @@ public:
 	void init(Window& myWindow) {
 		m_PhysicsEngine = new Logic::Physics::PhysicsEngine();
 		
-		m_MainCamera = new Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
+		m_MainCamera = new Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
 
 		Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
 

@@ -14,7 +14,7 @@ namespace Somnium
 			class BatchRenderer : virtual public Renderer
 			{
 			public:
-				BatchRenderer(const Window& window, Camera camera)
+				BatchRenderer(const Window& window, Cameras::Camera* camera)
 					: Renderer(window, camera)
 				{
 					init();

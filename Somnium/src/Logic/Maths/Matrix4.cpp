@@ -245,13 +245,8 @@ namespace Somnium
 		Matrix4 Matrix4::lookAt(const Vector3& eye, const Vector3& center, const Vector3& up)
 		{
 			Vector3 z = (eye - center).normalise();
-			Vector3 y = z * eye;
-			Vector3 x = up * z;
-			
-			y = z * x;
-
-			x = x.normalise();
-			y = y.normalise();
+			Vector3 x = (up * z).normalise();
+			Vector3 y = z * x;
 
 			Matrix4 lookAtMatrix = Matrix4::identity();
 

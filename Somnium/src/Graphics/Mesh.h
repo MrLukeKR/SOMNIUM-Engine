@@ -51,11 +51,11 @@ namespace Somnium
 			const Maths::Matrix4 getModelMatrix() const;
 
 		protected:
-			void rotate(float xAngleOffset, float yAngleOffset, float zAngleOffset);
+			void rotate(float xAngle, float yAngle, float zAngle) { rotate(Maths::Vector3(xAngle, yAngle, zAngle)); }
 			void rotate(Maths::Vector3 rotationOffset);
 
 			void setOrientation(float xAngle, float yAngle, float zAngle) { setOrientation(Maths::Vector3(xAngle, yAngle, zAngle)); }
-			void setOrientation(Maths::Vector3 rotationOffset) { m_Orientation += rotationOffset; };
+			void setOrientation(Maths::Vector3 orientation) { m_Orientation = orientation; };
 
 			void scale(float x, float y, float z);
 			void scale(Maths::Vector3 scaleAmount);

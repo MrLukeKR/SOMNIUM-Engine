@@ -35,11 +35,6 @@ namespace Somnium
 			m_ModelMatrix *= Maths::Matrix4::translation(translation);
 		}
 
-		void Mesh::rotate(float angleX, float angleY, float angleZ)
-		{
-			rotate(Maths::Vector3(angleX, angleY, angleZ));
-		}
-
 		void Mesh::rotate(Maths::Vector3 rotation)
 		{
 			m_ModelMatrix *= Maths::Matrix4::rotationX(rotation.x);

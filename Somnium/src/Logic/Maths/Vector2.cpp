@@ -44,7 +44,11 @@ namespace Somnium
 
 		Vector2 Vector2::normalise() const
 		{
+			if (x == 0 && y == 0)
+				return Vector2(0, 0);
+
 			double mag = magnitude();
+			
 			return Vector2(x / mag, y / mag);
 		}
 
