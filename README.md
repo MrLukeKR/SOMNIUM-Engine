@@ -1,4 +1,4 @@
-# SOMNIUM [![Build Status](https://travis-ci.com/MrLukeKR/SOMNIUM-Engine.svg?branch=development)](https://travis-ci.org/MrLukeKR/SOMNIUM-Engine)
+# SOMNIUM [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.com/MrLukeKR/SOMNIUM-Engine.svg?branch=development)](https://travis-ci.org/MrLukeKR/SOMNIUM-Engine)
 A game engine focusing on breath-taking visuals, ultra-realistic audio and unparalleled scripting for a life-like experience.
 
 ## Additional Reading
