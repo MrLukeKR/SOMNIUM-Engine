@@ -1,18 +1,11 @@
 language: cpp
 solution: SomniumEngine.sln
-compiler: clang
-script: make
-os: linux
-dist: trusty
-sudo: required
-before_script:
-    - sudo add-apt-repository ppa:keithw/glfw3 -y
-    - sudo apt-get update
-    - sudo apt-get install libglfw3-dev libglew-dev x11-xserver-utils
-    - cd Somnium
-notifications:
-  slack:
-    on_success: change
-    on_failure: always
-    rooms:
-      secure: VyiwrHWNaD3cJTMBePMhTxmaS9C6G7IiNlLVrkBt5VtRQyEYaRp1TsbPDT1LfCewFTGxJl1j37Z6WDnZpv2DLcFI+x7BvPLsYQbelgeeS/3yuY5dNDlM0Yo/ilUJD2YSfEj6aKhgnmmxqeWZUHt+nLNCzTeVWgdU9wZ6J2z3VBwVsKPZ0ITZzt/zK8McbYlUHvyDVqt7Sr/vrkzYXmL63qkdX8po5loIKP+4VLYtwUaFQI2IOKsfbkIHSZgiUAprgWwA1y8g3JOB6nv5oItqYsX5tzS9lpW2ldFqHYqeaVkocZLOEt6QPcISqzfQwxzsFFpB3A/fgwQyi9hcdNyCawFgVM9oH+HmyOwrpNTmS+30YLCwnxnTy+ylC7XS0xo6zziQHcJlO9NNbS7dC3/KgrJVAshNSOLQdw76w0G6kbMVXzSTGht/lK8ZnRtYN15yMuZUb/3nmvX31Jjj2k4FJd+R4zvlBqrDDshdUsClULx8YUgfD0kSYux1D3xNtvEd/2agIxHSrFxpcxTsksJghJUIqwq2cIuyCen68jf6SXVutRd5D2TxAxeD4zepbnftC1MORC4P63swX9Xqf5x8ftQ2MPGjfiC/0ERhBAiePcI3Xv/QXmGIWLmx7jSRk+XVl9uLj99HJhaWLYGwd7gFfNe8k2BrUjeVTzNBCtR144w=
+os: windows
+env:
+  - MSBUILD_PATH="C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin"
+install:
+  - choco install visualstudio2019buildtools --package-parameters "--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
+  - choco install dotnetcore-sdk
+script:
+  - export PATH=$MSBUILD_PATH:$PATH
+  - MSBuild.exe -p:Configuration=Debug -p:Platform=x64 Somnium/Somnium.vcxproj
