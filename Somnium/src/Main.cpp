@@ -19,6 +19,7 @@
 #include "Graphics/Renderers/SerialRenderer.h"
 #include "Graphics/RenderableObject.h"
 #include "Graphics/Cameras/Camera.h"
+#include "Graphics/Cameras/FirstPersonCamera.h"
 #include "Graphics/Font.h"
 
 #include "Graphics/PostProcessing/PostProcessor.h"
@@ -80,7 +81,7 @@ int main(int argc, char** argv) {
 	currentGame = new LookingMonkeys();
 
 	currentGame->init(myWindow);
-	Graphics::Cameras::Camera* mainCamera = new Graphics::Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
+	Graphics::Cameras::Camera* mainCamera = new Graphics::Cameras::FirstPersonCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
 	currentGame->setActiveCamera(mainCamera);
 
 #ifdef ENABLE_DEBUG_CAMERA

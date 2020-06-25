@@ -281,6 +281,9 @@
     <ClInclude Include="src\Graphics\Cameras\Camera.h">
       <Filter>Header Files\Graphics\Cameras</Filter>
     </ClInclude>
+    <ClInclude Include="src\Graphics\Cameras\FirstPersonCamera.h">
+      <Filter>Header Files\Graphics\Cameras</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -377,6 +380,9 @@
       <Filter>Source Files\Logic\Physics</Filter>
     </ClCompile>
     <ClCompile Include="src\Graphics\Cameras\FlyCamera.cpp">
+      <Filter>Source Files\Graphics\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Cameras\FirstPersonCamera.cpp">
       <Filter>Source Files\Graphics\Cameras</Filter>
     </ClCompile>
   </ItemGroup>

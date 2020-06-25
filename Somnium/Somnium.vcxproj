@@ -151,6 +151,7 @@
     <ClInclude Include="src\Examples\FollowingMonkeys.h" />
     <ClInclude Include="src\Examples\LookingMonkeys.h" />
     <ClInclude Include="src\Examples\PathfindingMonkeys.h" />
+    <ClInclude Include="src\Graphics\Cameras\FirstPersonCamera.h" />
     <ClInclude Include="src\Graphics\Cameras\FlyCamera.h" />
     <ClInclude Include="src\Logic\Physics\PhysicsObject.h" />
     <ClInclude Include="src\Logic\Physics\RigidBody.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="src\Utilities\FrameRateUtilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Graphics\Cameras\FirstPersonCamera.cpp" />
     <ClCompile Include="src\Logic\Physics\RigidBody.cpp" />
     <ClCompile Include="src\Examples\RandomMonkeys.h" />
     <ClCompile Include="src\Logic\Physics\PhysicsEngine.cpp" />
