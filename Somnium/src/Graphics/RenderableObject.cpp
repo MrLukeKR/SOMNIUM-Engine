@@ -18,8 +18,7 @@ namespace Somnium
 
 		void RenderableObject::setScale(float x, float y, float z)
 		{
-			scale(1 / m_Scale.x, 1 / m_Scale.y, 1 / m_Scale.z);
-			scale(Maths::Vector3(x, y, z));
+			m_Scale = Maths::Vector3(x, y, z);
 		}
 
 		void RenderableObject::setOrientation(float x, float y, float z)
@@ -66,18 +65,21 @@ namespace Somnium
 
 		void RenderableObject::lookAt(Maths::Vector3 destination)
 		{
+			Maths::Vector3 front = Maths::Vector3(0, 0, 1);
 			Maths::Vector3 delta = (destination - m_Position).normalise();
 
-			float cosA = m_Position.dot(destination);
+			float cosA = delta.dot(front);
 
 			float angle = Maths::clamp(cosA, -1.f, 1.f);
+			angle = Maths::toDegrees(acos(cosA));
 
-			Maths::Vector3 axis = Maths::toDegrees(acos(cosA));
+			Maths::Vector3 axis = (front * delta).normalise();
 			
-			Maths::Vector3 pos = m_Position;
-			setPosition(0, 0, 0);
-			//setOrientation(axis * angle);
-			//setPosition(pos);
+			axis.x = -axis.x;
+
+			Maths::Vector3 orientation = axis * angle;
+
+			setOrientation(orientation);
 		}
 	}
 }
