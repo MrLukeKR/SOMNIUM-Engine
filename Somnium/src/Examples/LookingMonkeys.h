@@ -58,10 +58,15 @@ public:
 		shader->setVector3("lightPositions[2]", Maths::Vector3(-10.0f, -10.0f, 10.0f));
 		shader->setVector3("lightPositions[3]", Maths::Vector3(10.0f, -10.0f, 10.0f));
 
-		char buff[24];
+		static const int buffSize = 24;
+		char buff[buffSize];
 		for (unsigned int i = 0; i < 5; i++)
 		{
-			sprintf_s(buff, "lightColors[%d]", i);
+#ifdef _WIN32
+			sprintf_s(buff, buffSize, "lightColors[%d]", i);
+#else
+			sprintf_s(buff, buffSize, "lightColors[%d]", i);
+#endif
 			shader->setVector3(buff, Maths::Vector3(3000.0f, 3000.0f, 3000.0f));
 		}
 
