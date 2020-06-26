@@ -80,9 +80,15 @@ public:
 			char* objectID = new char[10]; // Allow 24 char item names + 10 chars of ID (allows 4294967295 instantiations of each object)
 			char* objectRef = new char[34];
 
+#ifdef _WIN32
 			sprintf_s(objectID, sizeof(char[10]), "%d", i);
 			strcpy_s(objectRef, sizeof(char[24]), objectName);
 			strcat_s(objectRef, sizeof(char[10]), objectID);
+#else
+			snprintf(objectID, sizeof(char[10]), "%d", i);
+			strcpy(objectRef, objectName); //TODO: Make this safe on Linux
+			strcat(objectRef, objectID)
+#endif
 
 			m_Objects.insert({ objectRef, new RenderableObject(new Mesh(*m_Meshes.at("monkey"))) });
 		}

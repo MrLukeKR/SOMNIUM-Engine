@@ -45,11 +45,12 @@ namespace Somnium
 
 			std::string toString() 
 			{ 
-				char buff[256];
+				static const int buffSize = 256;
+				char buff[buffSize];
 #ifdef _WIN32
-				sprintf_s(buff, "[%f, %f, %f]", x, y, z);
+				sprintf_s(buff, buffSize, "[%f, %f, %f]", x, y, z);
 #else
-				snprintf(buff, "[%f, %f, %f]", x, y, z);
+				snprintf(buff, buffSize, "[%f, %f, %f]", x, y, z);
 #endif
 
 				return std::string(buff);  

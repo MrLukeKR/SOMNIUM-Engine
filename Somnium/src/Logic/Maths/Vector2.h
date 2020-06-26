@@ -35,7 +35,8 @@ namespace Somnium
 
 			std::string toString()
 			{
-				char buff[256];
+				static const int buffSize = 256;
+				char buff[buffSize];
 #ifdef _WIN32
 				sprintf_s(buff, "[%f, %f]", x, y);
 #else

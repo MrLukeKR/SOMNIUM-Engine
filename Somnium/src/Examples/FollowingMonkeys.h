@@ -88,8 +88,8 @@ public:
 			strcat_s(objectRef, sizeof(char[10]), objectID);
 #else
 			snprintf(objectID, sizeof(char[10]), "%d", i);
-			strcpy(objectRef, sizeof(char[24]), objectName); //TODO: Make this safe in linux
-			strcat(objectRef, sizeof(char[10]), objectID);
+			strcpy(objectRef, objectName); //TODO: Make this safe in linux
+			strcat(objectRef, objectID);
 #endif
 
 			m_Objects.insert({ objectRef, new RenderableObject(new Mesh(*m_Meshes.at("monkey"))) });
