@@ -3,7 +3,6 @@ jobs:
   include:
     - os: windows
       solution: SomniumEngine.sln
-
       env:
         - MSBUILD_PATH="C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin"
       install:
@@ -13,6 +12,9 @@ jobs:
         - export PATH=$MSBUILD_PATH:$PATH
         - MSBuild.exe -p:Configuration=Debug -p:Platform=x64 Somnium/Somnium.vcxproj
     - os: linux
+      dist: xenial
+      before_install:
+        - apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
       script:
         - cd Somnium
         - make
