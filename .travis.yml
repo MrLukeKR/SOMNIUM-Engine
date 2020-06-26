@@ -9,3 +9,4 @@ install:
 script:
   - export PATH=$MSBUILD_PATH:$PATH
   - MSBuild.exe -p:Configuration=Debug -p:Platform=x64 Somnium/Somnium.vcxproj
+  - bash <(curl -s https://codecov.io/bash)
