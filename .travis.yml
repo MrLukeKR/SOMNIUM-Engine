@@ -20,4 +20,5 @@ jobs:
       script:
         - make
       after_success:
+        - cd Somnium
         - bash <(curl -s https://codecov.io/bash)
