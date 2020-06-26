@@ -21,7 +21,7 @@ namespace Somnium
 #ifdef _WIN32
 				bool connectToServer();
 #else
-				bool connectToServer(struct sockaddr_in serverAddress) {};
+				bool connectToServer(struct sockaddr_in serverAddress);
 #endif
 
 				void broadcastMessage(std::string message) {};
