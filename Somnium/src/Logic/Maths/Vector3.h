@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <string>
-#include "../../Utilities/Compatability.h"
 
 namespace Somnium
 {
@@ -47,7 +46,11 @@ namespace Somnium
 			std::string toString() 
 			{ 
 				char buff[256];
-				SPRINTF(buff, "[%f, %f, %f]", x, y, z);
+#ifdef _WIN32
+				sprintf_s(buff, "[%f, %f, %f]", x, y, z);
+#else
+				snprintf(buff, "[%f, %f, %f]", x, y, z);
+#endif
 
 				return std::string(buff);  
 			}

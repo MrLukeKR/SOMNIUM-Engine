@@ -60,7 +60,12 @@ public:
 		char buff[24];
 		for (unsigned int i = 0; i < 5; i++)
 		{
+#ifdef _WIN32
 			sprintf_s(buff, "lightColors[%d]", i);
+#else
+			snprintf(buff, "lightColors[%d]", i);
+#endif
+	
 			shader->setVector3(buff, Maths::Vector3(3000.0f, 3000.0f, 3000.0f));
 		}
 
