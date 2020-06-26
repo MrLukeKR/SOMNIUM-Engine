@@ -1,4 +1,4 @@
-CC := clang++ --coverage -DDEBUG_MODE -DENABLE_DEBUG_CAMERA
+CC := clang++ -fprofile-instr-generate -fcoverage-mapping -DDEBUG_MODE -DENABLE_DEBUG_CAMERA
 WEBCC := emcc -O3 --memory-init-file 0 -DWEB_BUILD -s FULL_ES3=1 -s USE_GLFW=3 -s USE_FREETYPE=1
 OSXLDFLAGS:= -framework OpenGL -l glfw -l GLEW -L Dependencies/portAudio/lib -l portaudio
 LDFLAGS:= -lgcov -l GL -pthread -l glfw -l GLEW -l freetype -L Dependencies/portAudio/lib
