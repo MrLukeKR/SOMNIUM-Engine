@@ -1,12 +1,18 @@
 language: cpp
-solution: SomniumEngine.sln
-os: windows
-env:
-  - MSBUILD_PATH="C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin"
-install:
-  - choco install visualstudio2019buildtools --package-parameters "--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
-  - choco install dotnetcore-sdk
-script:
-  - export PATH=$MSBUILD_PATH:$PATH
-  - MSBuild.exe -p:Configuration=Debug -p:Platform=x64 Somnium/Somnium.vcxproj
-  - bash <(curl -s https://codecov.io/bash)
+jobs:
+  include:
+    - os: windows
+      solution: SomniumEngine.sln
+
+      env:
+        - MSBUILD_PATH="C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin"
+      install:
+        - choco install visualstudio2019buildtools --package-parameters "--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
+        - choco install dotnetcore-sdk
+      script:
+        - export PATH=$MSBUILD_PATH:$PATH
+        - MSBuild.exe -p:Configuration=Debug -p:Platform=x64 Somnium/Somnium.vcxproj
+    - os: linux
+      script: make
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
