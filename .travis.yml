@@ -13,6 +13,8 @@ jobs:
         - export PATH=$MSBUILD_PATH:$PATH
         - MSBuild.exe -p:Configuration=Debug -p:Platform=x64 Somnium/Somnium.vcxproj
     - os: linux
-      script: make
+      script:
+        - cd Somnium
+        - make
       after_success:
         - bash <(curl -s https://codecov.io/bash)
