@@ -54,7 +54,7 @@ namespace Somnium
 #ifdef _WIN32
 							strerror_s(errorMessage, errno);
 #else
-							strerror_r(errno, errorMessage, 1024);
+							strerror(errno);
 #endif
 
 							std::cerr << errorMessage << std::endl;
