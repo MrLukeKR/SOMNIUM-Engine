@@ -1,8 +1,8 @@
 CC := clang++ -DDEBUG_MODE -DENABLE_DEBUG_CAMERA
 WEBCC := emcc -O3 --memory-init-file 0 -DWEB_BUILD -s FULL_ES3=1 -s USE_GLFW=3 -s USE_FREETYPE=1
 OSXLDFLAGS:= -framework OpenGL -l glfw -l GLEW -L Dependencies/portAudio/lib -l portaudio
-LDFLAGS:= -l GL -pthread -l glfw -l GLEW -l freetype -L Dependencies/portAudio/lib
-CPPFLAGS := --coverage -Wall -g -std=c++11 -pthread -lm
+LDFLAGS:= -lgcov --coverage -l GL -pthread -l glfw -l GLEW -l freetype -L Dependencies/portAudio/lib
+CPPFLAGS := -Wall -g -std=c++11 -pthread -lm
 PKGFLAGS := -Wextra `pkg-config --cflags glfw3 glew freetype2`
 CXXFLAGS:=  -I Dependencies/GLEW/include -I Dependencies/GLFW/include -I Dependencies/portsf/include -I Dependencies/portAudio/include -I Dependencies/freetype/include
 WEBFLAGS:=  -I Dependencies/GLEW/include -I Dependencies/GLFW/include -I Dependencies/portsf/include -I Dependencies/portAudio/include
