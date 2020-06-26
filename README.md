@@ -1,4 +1,4 @@
-# SOMNIUM [![Build Status](https://travis-ci.com/MrLukeKR/SOMNIUM-Engine.svg?branch=development)](https://travis-ci.org/MrLukeKR/SOMNIUM-Engine)
+# SOMNIUM [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.com/MrLukeKR/SOMNIUM-Engine.svg?branch=development)](https://travis-ci.org/MrLukeKR/SOMNIUM-Engine) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/69d055d3e4db468a8462160d84a8c461)](https://app.codacy.com/manual/MrLukeKR/SOMNIUM-Engine?utm_source=github.com&utm_medium=referral&utm_content=MrLukeKR/SOMNIUM-Engine&utm_campaign=Badge_Grade_Dashboard)
 A game engine focusing on breath-taking visuals, ultra-realistic audio and unparalleled scripting for a life-like experience.
 
 ## Additional Reading
