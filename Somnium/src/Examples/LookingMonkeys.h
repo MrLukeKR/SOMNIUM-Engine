@@ -65,7 +65,7 @@ public:
 #ifdef _WIN32
 			sprintf_s(buff, buffSize, "lightColors[%d]", i);
 #else
-			sprintf_s(buff, buffSize, "lightColors[%d]", i);
+			snprintf(buff, buffSize, "lightColors[%d]", i);
 #endif
 			shader->setVector3(buff, Maths::Vector3(3000.0f, 3000.0f, 3000.0f));
 		}
