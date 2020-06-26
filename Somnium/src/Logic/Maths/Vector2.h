@@ -38,9 +38,9 @@ namespace Somnium
 				static const int buffSize = 256;
 				char buff[buffSize];
 #ifdef _WIN32
-				sprintf_s(buff, "[%f, %f]", x, y);
+				sprintf_s(buff, buffSize, "[%f, %f]", x, y);
 #else
-				snprintf(buff, "[%f, %f]", x, y);
+				snprintf(buff, buffSize, "[%f, %f]", x, y);
 #endif
 
 				return std::string(buff);
