@@ -56,10 +56,15 @@ public:
 		shader->setVector3("lightPositions[2]", Maths::Vector3(-10.0f, -10.0f, 10.0f));
 		shader->setVector3("lightPositions[3]", Maths::Vector3(10.0f, -10.0f, 10.0f));
 
-		char buff[24];
+		static const int buffSize = 24;
+		char buff[buffSize];
 		for (unsigned int i = 0; i < 5; i++)
 		{
-			sprintf_s(buff, "lightColors[%d]", i);
+#ifdef _WIN32
+			sprintf_s(buff, buffSize, "lightColors[%d]", i);
+#else
+			snprintf(buff, buffSize, "lightColors[%d]", i);
+#endif
 			shader->setVector3(buff, Maths::Vector3(3000.0f, 3000.0f, 3000.0f));
 		}
 
@@ -87,7 +92,7 @@ public:
 #else
 			snprintf(objectID, sizeof(char[10]), "%d", i);
 			strcpy(objectRef, objectName); //TODO: Make this safe on Linux
-			strcat(objectRef, objectID)
+			strcat(objectRef, objectID);
 #endif
 
 			m_Objects.insert({ objectRef, new RenderableObject(new Mesh(*m_Meshes.at("monkey"))) });
