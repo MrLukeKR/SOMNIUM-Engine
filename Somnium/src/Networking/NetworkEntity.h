@@ -1,14 +1,15 @@
 #pragma once
 
 #ifdef _WIN32
-
+	
 #else
 	#include <sys/socket.h>
 	#include <netinet/in.h>
 #endif
 
+#include <cerrno>	
+#include <string.h>
 #include <string>
-#include <cerrno>
 #include <iostream>
 
 namespace Somnium
