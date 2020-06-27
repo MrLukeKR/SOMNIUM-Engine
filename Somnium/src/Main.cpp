@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
 	Networking::Centralised::Server* myServer = new Networking::Centralised::Server();
 	myServer->run();
 
-	Renderers::SerialRenderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
+	Renderers::Renderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
 	PhysicsEngine* physics = new PhysicsEngine();
 
 
@@ -135,7 +135,7 @@ int main(int argc, char** argv) {
 		//renderer->beginMapping();
 
 		renderer->submitToQueue(currentGame->getObjects());
-		physics->submitToQueue(currentGame->getObjects());
+		// physics->submitToQueue(currentGame->getObjects());
 
 
 		//3. Draw objects

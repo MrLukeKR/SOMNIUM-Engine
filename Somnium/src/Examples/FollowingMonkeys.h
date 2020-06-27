@@ -80,7 +80,7 @@ public:
 
 		const int numOfMonkeys = 100;
 
-		const float bounds[] = { 10.f, 10.f, -50.f };
+		const float bounds[] = { 100.f, 100.f, -500.f };
 
 		for (unsigned int i = 0; i < numOfMonkeys; i++)
 		{
@@ -127,6 +127,8 @@ public:
 
 			object->lookAt(camPos);
 			object->moveTowards(camPos, 0.01f);
+			
+			
 		}
 
 		Graphics::Shaders::Shader* shader = m_Shaders.at("PBR/basic");

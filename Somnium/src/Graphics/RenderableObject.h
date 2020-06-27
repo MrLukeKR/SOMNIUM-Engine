@@ -54,6 +54,7 @@ namespace Somnium
 			Maths::Vector3 m_Position;
 			Maths::Vector3 m_Scale;
 			Maths::Vector3 m_Orientation;
+			Maths::Vector3 m_Front = Maths::Vector3(0, 0, 1);
 		};
 	}
 }

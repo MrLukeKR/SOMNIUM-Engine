@@ -37,18 +37,14 @@ namespace Somnium
 
 		void Mesh::rotate(Maths::Vector3 rotation)
 		{
-			m_ModelMatrix *= Maths::Matrix4::rotationX(rotation.x);
-			m_ModelMatrix *= Maths::Matrix4::rotationY(rotation.y);
-			m_ModelMatrix *= Maths::Matrix4::rotationZ(rotation.z);
+			m_ModelMatrix *= (Maths::Matrix4::rotationZ(rotation.z)
+					      *  Maths::Matrix4::rotationY(rotation.y)
+				          *  Maths::Matrix4::rotationX(rotation.x));
 		}
 
 		const Maths::Matrix4 Mesh::getModelMatrix() const
 		{	
-			return 
-			  Maths::Matrix4::rotationX(m_Orientation.x)
-			* Maths::Matrix4::rotationY(m_Orientation.y)
-			* Maths::Matrix4::rotationZ(m_Orientation.z)
-			* const_cast<Maths::Matrix4&>(m_ModelMatrix);
+			return m_ModelMatrix;
 		}
 	}
 }

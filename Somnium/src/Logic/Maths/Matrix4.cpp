@@ -324,6 +324,7 @@ namespace Somnium
 			return rotationMatrix;
 		}
 
+
 		Matrix4 Matrix4::rotation(float angle, const Vector3& axis)
 		{
 			Matrix4 rotationMatrix(1);

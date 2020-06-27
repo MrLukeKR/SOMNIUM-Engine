@@ -19,10 +19,12 @@ namespace Somnium
 				{
 					init();
 				};
+
 				~BatchRenderer();
 
 				void beginMapping();
 				virtual void submitToQueue(RenderableObject* object);
+				virtual void submitToQueue(std::map<char*, RenderableObject*> objects) { for (auto object : objects) submitToQueue(object.second); }
 				void endMapping();
 				virtual void render(bool flushQueue = false);
 

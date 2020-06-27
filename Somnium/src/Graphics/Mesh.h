@@ -13,6 +13,7 @@
 #include "Buffers/VertexArray.h"
 #include <vector>
 #include <string>
+#include <deque>
 
 namespace Somnium
 {
@@ -54,9 +55,6 @@ namespace Somnium
 			void rotate(float xAngle, float yAngle, float zAngle) { rotate(Maths::Vector3(xAngle, yAngle, zAngle)); }
 			void rotate(Maths::Vector3 rotationOffset);
 
-			void setOrientation(float xAngle, float yAngle, float zAngle) { setOrientation(Maths::Vector3(xAngle, yAngle, zAngle)); }
-			void setOrientation(Maths::Vector3 orientation) { m_Orientation = orientation; };
-
 			void scale(float x, float y, float z);
 			void scale(Maths::Vector3 scaleAmount);
 			void scale(float uniformScale);
@@ -75,7 +73,6 @@ namespace Somnium
 
 			const std::vector<Texture> m_Textures;
 
-			Maths::Vector3 m_Orientation = Maths::Vector3(0, 0, 0);
 			Maths::Matrix4 m_ModelMatrix = Maths::Matrix4::identity();
 		};
 	}

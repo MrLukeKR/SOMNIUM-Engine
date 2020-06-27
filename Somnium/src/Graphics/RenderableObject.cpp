@@ -23,18 +23,17 @@ namespace Somnium
 
 		void RenderableObject::setOrientation(float x, float y, float z)
 		{
-			m_Mesh->setOrientation(x, y, z);
+			m_Mesh->rotate(- m_Orientation);
+			m_Orientation = Maths::Vector3(x, y, z);
+			m_Mesh->rotate(Maths::Vector3(x, y, z));
 		}
 
 		void RenderableObject::rotate(Maths::Vector3 rotation)
 		{
-			Maths::Vector3 oldPos = m_Position;
-			setPosition(0, 0, 0);
 
 			m_Mesh->rotate(rotation);
 			m_Orientation += rotation;
 
-			setPosition(oldPos);
 		}
 
 		void RenderableObject::scale(Maths::Vector3 scaleFactor)
@@ -63,15 +62,14 @@ namespace Somnium
 
 		void RenderableObject::lookAt(Maths::Vector3 destination)
 		{
-			Maths::Vector3 front = Maths::Vector3(0, 0, 1);
 			Maths::Vector3 delta = (destination - m_Position).normalise();
 
-			float cosA = delta.dot(front);
+			float cosA = delta.dot(m_Front);
 
 			float angle = Maths::clamp(cosA, -1.f, 1.f);
 			angle = Maths::toDegrees(acos(cosA));
 
-			Maths::Vector3 axis = (front * delta).normalise();
+			Maths::Vector3 axis = (m_Front * delta).normalise();
 			
 			axis.x = -axis.x;
 
