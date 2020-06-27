@@ -56,11 +56,9 @@ namespace Somnium
 
 		void RenderableObject::moveTowards(Maths::Vector3 destination, float amount)
 		{
-			Maths::Vector3 direction = Maths::Vector3::dot(m_Position, destination);
+			Maths::Vector3 delta = (destination - m_Position).normalise();
 
-			cout << "POSITION: " << m_Position.toString() << "\tDESTINATION: " << destination.toString() << endl;
-
-			m_Mesh->translate(direction * amount);
+			move(delta * amount);
 		}
 
 		void RenderableObject::lookAt(Maths::Vector3 destination)

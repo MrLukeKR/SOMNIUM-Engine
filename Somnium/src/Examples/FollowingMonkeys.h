@@ -26,12 +26,12 @@ public:
 	FollowingMonkeys() : Game("Following Monkeys") {}
 
 	/*
-	This example will spawn a set of monkeys in random positions and slowly set each to follow 
-	the camera, eventually converging together if camera movement is not applied.
+	This example will spawn a set of monkeys in random positions and set each objects rotation
+	to look at the camera as it moves about the scene
 	*/
 
 	void init(Window& myWindow) {
-		m_MainCamera = new Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
+		//m_MainCamera = new Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
 
 		Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
 
@@ -77,12 +77,12 @@ public:
 		m_Meshes.insert({ "monkey", new Mesh(Utilities::File::loadOBJ("Resources/Graphics/Objects/Monkey.obj", *shader)) });
 
 		const char objectName[24] = "monkey";
-		
+
 		const int numOfMonkeys = 100;
 
 		const float bounds[] = { 10.f, 10.f, -50.f };
 
-		for (unsigned int i = 0; i < numOfMonkeys ; i++)
+		for (unsigned int i = 0; i < numOfMonkeys; i++)
 		{
 			char* objectID = new char[10]; // Allow 24 char item names + 10 chars of ID (allows 4294967295 instantiations of each object)
 			char* objectRef = new char[34];
@@ -93,7 +93,7 @@ public:
 			strcat_s(objectRef, sizeof(char[10]), objectID);
 #else
 			snprintf(objectID, sizeof(char[10]), "%d", i);
-			strcpy(objectRef, objectName); //TODO: Make this safe in linux
+			strcpy(objectRef, objectName); //TODO: Make this safe on Linux
 			strcat(objectRef, objectID);
 #endif
 
@@ -119,17 +119,19 @@ public:
 
 		//renderer->beginMapping();
 
+		Maths::Vector3 camPos = m_MainCamera->getPosition();
+
 		for (auto iterObj : m_Objects)
 		{
 			RenderableObject* object = iterObj.second;
 
-			object->moveTowards(m_MainCamera->getPosition(), 10);
-			//TODO: Make move-towards monkeys (the above doesn't seem to work as intended)
+			object->lookAt(camPos);
+			object->moveTowards(camPos, 0.01f);
 		}
 
-		Graphics::Shaders::Shader * shader = m_Shaders.at("PBR/basic");
+		Graphics::Shaders::Shader* shader = m_Shaders.at("PBR/basic");
 		shader->enable();
-		shader->setVector3("lightPositions[4]", m_MainCamera->getPosition());
+		shader->setVector3("lightPositions[4]", camPos);
 
 		//3. Draw objects
 
