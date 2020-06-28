@@ -1,4 +1,5 @@
 #include "Mesh.h"
+#include "../Logic/Maths/Quaternion.h"
 
 namespace Somnium
 {
@@ -22,7 +23,7 @@ namespace Somnium
 
 		void Mesh::scale(Maths::Vector3 scaleAmount)
 		{
-			m_ModelMatrix *= Maths::Matrix4::scale(scaleAmount);
+			m_Scale *= scaleAmount;
 		}
 
 		void Mesh::translate(float x, float y, float z)
@@ -32,19 +33,26 @@ namespace Somnium
 
 		void Mesh::translate(Maths::Vector3 translation)
 		{
-			m_ModelMatrix *= Maths::Matrix4::translation(translation);
+			m_Position += translation;
 		}
 
 		void Mesh::rotate(Maths::Vector3 rotation)
 		{
-			m_ModelMatrix *= (Maths::Matrix4::rotationZ(rotation.z)
-					      *  Maths::Matrix4::rotationY(rotation.y)
-				          *  Maths::Matrix4::rotationX(rotation.x));
+			m_Orientation += rotation;
 		}
 
 		const Maths::Matrix4 Mesh::getModelMatrix() const
 		{	
-			return m_ModelMatrix;
+			Maths::Matrix4 modelMatrix = Maths::Matrix4::identity();
+			Maths::Quaternion rotation = Maths::Quaternion(m_Orientation);
+
+			modelMatrix *= Maths::Matrix4::scale(m_Scale) *
+				Maths::Matrix4::rotationZ(m_Orientation.z) *
+				Maths::Matrix4::rotationY(m_Orientation.y) *
+				Maths::Matrix4::rotationZ(m_Orientation.x) *
+				Maths::Matrix4::translation(m_Position);
+
+			return modelMatrix;
 		}
 	}
 }

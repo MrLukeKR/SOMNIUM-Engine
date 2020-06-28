@@ -7,7 +7,6 @@
 	#include <glew.h> 
 #endif
 
-#include "../Logic/Maths/Maths.h"
 #include "Shaders/Shader.h"
 #include "Buffers/IndexBuffer.h"
 #include "Buffers/VertexArray.h"
@@ -62,6 +61,15 @@ namespace Somnium
 			void translate(float xOffset, float yOffset, float zOffset);
 			void translate(Maths::Vector3 offset);
 
+			void setPosition(Maths::Vector3& position) { m_Position = position; }
+			void setPosition(float x, float y, float z) { m_Position = Maths::Vector3(x, y, z); }
+
+			void setOrientation(Maths::Vector3& orientation) { m_Orientation = orientation; }
+			void setOrientation(float x, float y, float z) { m_Orientation = Maths::Vector3(x, y, z); }
+
+			void setScale(Maths::Vector3& scale) { m_Scale = scale; }
+			void setScale(float x, float y, float z) { m_Scale = Maths::Vector3(x, y, z); }
+
 		protected:
 			Buffers::VertexArray* m_VAO;
 			Buffers::IndexBuffer* m_IBO;
@@ -73,7 +81,9 @@ namespace Somnium
 
 			const std::vector<Texture> m_Textures;
 
-			Maths::Matrix4 m_ModelMatrix = Maths::Matrix4::identity();
+			Maths::Vector3 m_Position = Maths::Vector3(0);
+			Maths::Vector3 m_Orientation = Maths::Vector3(0);
+			Maths::Vector3 m_Scale = Maths::Vector3(1);
 		};
 	}
 }

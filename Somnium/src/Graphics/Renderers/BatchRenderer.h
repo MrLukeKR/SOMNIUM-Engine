@@ -32,6 +32,8 @@ namespace Somnium
 				void init();
 
 			private:
+				std::vector<Maths::Matrix4> m_Transformations;
+
 				Buffers::VertexArray*  m_VAO;
 				Buffers::VertexBuffer* m_VBO;
 				Buffers::IndexBuffer* m_IBO;

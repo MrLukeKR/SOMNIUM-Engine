@@ -10,7 +10,10 @@
 	#include <glew.h> 
 #endif
 
-#include "../../Logic/Maths/Maths.h"
+#include "../../Logic/Maths/Vector2.h"
+#include "../../Logic/Maths/Vector3.h"
+#include "../../Logic/Maths/Vector4.h"
+#include "../../Logic/Maths/Matrix4.h"
 
 #ifdef WEB_BUILD
 	#define CHAR char

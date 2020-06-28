@@ -23,9 +23,7 @@ namespace Somnium
 
 		void RenderableObject::setOrientation(float x, float y, float z)
 		{
-			m_Mesh->rotate(- m_Orientation);
-			m_Orientation = Maths::Vector3(x, y, z);
-			m_Mesh->rotate(Maths::Vector3(x, y, z));
+			m_Mesh->setOrientation(Maths::Vector3(x, y, z));
 		}
 
 		void RenderableObject::rotate(Maths::Vector3 rotation)
@@ -71,8 +69,6 @@ namespace Somnium
 
 			Maths::Vector3 axis = (m_Front * delta).normalise();
 			
-			axis.x = -axis.x;
-
 			Maths::Vector3 orientation = axis * angle;
 
 			setOrientation(orientation);

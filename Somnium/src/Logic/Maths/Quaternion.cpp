@@ -1,4 +1,5 @@
 #include "Quaternion.h"
+
 #include <algorithm>
 
 namespace Somnium
@@ -78,6 +79,8 @@ namespace Somnium
 		{
 			Matrix4 transformationMatrix = Matrix4::identity();
 
+			Vector4 nvw = vw / (float)sqrt(dot(vw, vw)); // Normalised vw vector
+
 			float
 				xSq = vw.x * vw.x,
 				ySq = vw.y * vw.y,
@@ -101,7 +104,7 @@ namespace Somnium
 			transformationMatrix.elements2D[1][2] = 2 * (yz - xw);
 			transformationMatrix.elements2D[2][2] = 1 - 2 * (xSq + ySq);
 
-			return Matrix4();
+			return transformationMatrix;
 		}
 
 		Quaternion Quaternion::slerp(const Quaternion &quaternion1, const Quaternion &quaternion2, float t) const
@@ -116,6 +119,11 @@ namespace Somnium
 				Quaternion qperp = normalise(quaternion2 - quaternion1 * cosineTheta);
 				return quaternion1 * cos(thetaT) + qperp * sin(thetaT);
 			}
+		}
+
+		inline void Quaternion::normalise()
+		{
+			vw /= (float)sqrt(dot(vw, vw));
 		}
 
 		inline float Quaternion::dot(const Quaternion &quaternion)

@@ -1,5 +1,8 @@
 #pragma once
-#include "Maths.h"
+
+#include "Vector4.h"
+#include "Vector3.h"
+#include "Matrix4.h"
 
 namespace Somnium
 {
@@ -54,22 +57,23 @@ namespace Somnium
 			inline float dot(const Quaternion &quaternion);
 			static inline float dot(const Quaternion &quaternion1, const Quaternion &quaternion2);
 
+			inline void normalise();
 			static inline Quaternion normalise(const Quaternion &quaternion);
 
 			//TODO: Animation functions and variables
 		};
 
-		Quaternion operator- (const float &scalar, const Quaternion &quaternion)
+		inline Quaternion operator- (const float &scalar, const Quaternion &quaternion)
 		{
 			return Quaternion(quaternion.vw - scalar);
 		}
 
-		Quaternion operator+ (const float &scalar, const Quaternion &quaternion)
+		inline Quaternion operator+ (const float &scalar, const Quaternion &quaternion)
 		{
 			return Quaternion(quaternion.vw + scalar);
 		}
 
-		Quaternion operator* (const float &scalar, const Quaternion &quaternion)
+		inline Quaternion operator* (const float &scalar, const Quaternion &quaternion)
 		{
 			return Quaternion(quaternion.vw * scalar);
 		}

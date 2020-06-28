@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Vector3.h"
+#include "Vector4.h"
 #include "Maths.h"
 #include <iostream>
 
