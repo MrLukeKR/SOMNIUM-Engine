@@ -4,8 +4,7 @@
 #include "../Graphics/Window.h"
 
 #include "../Graphics/Mesh.h"
-
-#include "../Graphics/Font.h"
+#include "../Graphics/Cameras/FlyCamera.h"
 
 #include "../Graphics/PostProcessing/PostProcessor.h"
 #include "../Graphics/PostProcessing/Lighting/Bloom.h"
@@ -31,21 +30,11 @@ public:
 	*/
 
 	void init(Window& myWindow) {
-		//m_MainCamera = new Camera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
-
-		Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
-
+		m_Cameras.insert({ "Main", new Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0)) });
+		m_MainCamera = m_Cameras.at("Main");
+		
 		m_Shaders.insert({ "PBR/basic", new Shaders::Shader("Resources/Graphics/Shaders/PBR/basic.vs", "Resources/Graphics/Shaders/PBR/basic.fs") });
-		m_Shaders.insert({ "Basic/basicText", new Shaders::Shader("Resources/Graphics/Shaders/Basic/basicText.vs", "Resources/Graphics/Shaders/Basic/basicText.fs") });
-
-#ifdef ENABLE_DEBUG_CAMERA
-		Shaders::Shader* naviShader = new Shaders::Shader("Resources/Graphics/Shaders/Debug/navigation.vs", "Resources/Graphics/Shaders/Debug/navigation.fs");
-#endif
-
-		Graphics::Shaders::Shader* textShader = m_Shaders.at("Basic/basicText");
-		textShader->enable();
-		textShader->setMatrix4("projection", Matrix4::orthographic(0, myWindow.getWidth(), 0, myWindow.getHeight(), -1.0f, 100.0f));
-
+	
 		Graphics::Shaders::Shader* shader = m_Shaders.at("PBR/basic");
 		shader->enable();
 		shader->setVector3("albedo", Maths::Vector3(1, 1, 1));
@@ -114,10 +103,7 @@ public:
 	{
 		//1. Get logic input	
 		//2. Update objects
-		static float offset = deltaTime * 0.1f;
-
-
-		//renderer->beginMapping();
+		static float offset = deltaTime * 0.01f;
 
 		Maths::Vector3 camPos = m_MainCamera->getPosition();
 
@@ -125,8 +111,8 @@ public:
 		{
 			RenderableObject* object = iterObj.second;
 
-			object->lookAt(camPos);
-			object->moveTowards(camPos, 0.01f);
+			object->lookAt(m_MainCamera->getPosition());
+			object->moveTowards(m_MainCamera->getPosition() , offset);
 			
 			
 		}

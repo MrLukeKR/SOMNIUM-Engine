@@ -19,7 +19,7 @@ namespace Somnium
 				VertexArray();
 				~VertexArray();
 	
-				void addBuffer(VertexBuffer* vertexBuffer, GLuint index);
+				void addBuffer(VertexBuffer* vertexBuffer, GLuint index, GLuint stride = 0, const GLvoid* offset = 0);
 
 				void draw(unsigned int count) const;
 

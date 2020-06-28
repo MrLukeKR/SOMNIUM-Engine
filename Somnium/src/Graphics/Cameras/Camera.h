@@ -70,9 +70,9 @@ namespace Somnium
 
 				void offsetFOV(const float offset) { setFOV(m_FieldOfView + offset); }
 
-				virtual void move(Direction direction) {};
-				virtual void move(Direction direction, float offset) {};
-				virtual void move(Maths::Vector3 displacement) {};
+				virtual void move(Direction direction) = 0;
+				virtual void move(Direction direction, float offset) = 0;
+				virtual void move(Maths::Vector3 displacement) = 0;
 			
 				/* UI Controls */
 			
@@ -115,6 +115,8 @@ namespace Somnium
 				Camera(const float fieldOfView, const float aspectRatio = 16.f / 9.f, const float near = 0.1f, const float far = 0.1f, const bool orthographic = false, Maths::Vector3 position = Maths::Vector3(), Maths::Vector3 orientation = Maths::Vector3())
 				: m_FieldOfView(fieldOfView), m_AspectRatio(aspectRatio), m_Near(near), m_Far(far), m_Orthographic(orthographic), m_Position(position), m_Orientation(orientation) 
 				{
+					m_Orientation.y = -m_Orientation.y;
+
 					updateProjection();
 					updateView();
 				};
@@ -162,7 +164,7 @@ namespace Somnium
 					m_MinRoll = -1;
 
 				Maths::Matrix4 m_Projection;
-				Maths::Vector3 m_Position, m_Orientation = Maths::Vector3(0, 0, 0), m_Target = Maths::Vector3(0, 0, -1);
+				Maths::Vector3 m_Position, m_Orientation, m_Target = Maths::Vector3(0, 0, -1);
 				Maths::Vector3 m_Direction = (m_Position - m_Target).normalise();
 			
 				Maths::Vector3

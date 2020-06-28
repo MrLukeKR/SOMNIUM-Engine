@@ -155,7 +155,7 @@
     <ClInclude Include="src\Graphics\Cameras\FlyCamera.h" />
     <ClInclude Include="src\Logic\Physics\PhysicsObject.h" />
     <ClInclude Include="src\Logic\Physics\RigidBody.h" />
-    <ClInclude Include="src\Examples\PhysicsMonkeys.h" />
+    <ClInclude Include="src\Examples\BouncingMonkeys.h" />
     <ClInclude Include="src\Logic\Game.h" />
     <ClInclude Include="src\Logic\Physics\PhysicsEngine.h" />
     <ClInclude Include="src\Graphics\PostProcessing\Filters\Colourise.h" />

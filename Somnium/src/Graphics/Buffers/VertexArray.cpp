@@ -16,14 +16,14 @@ namespace Somnium
 				glDeleteVertexArrays(1, &m_ArrayID);
 			}
 
-			void VertexArray::addBuffer(VertexBuffer* buffer, GLuint index)
+			void VertexArray::addBuffer(VertexBuffer* buffer, GLuint index, GLuint stride, const GLvoid* offset)
 			{
 				bind();
 				buffer->bind();
 
 				glEnableVertexAttribArray(index);
 
-				glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, GL_FALSE, 0, 0);
+				glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, GL_FALSE, stride, offset);
 
 				buffer->unbind();
 				unbind();

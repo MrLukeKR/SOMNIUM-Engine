@@ -1,5 +1,10 @@
 #pragma once
 
+#define MAX_VERTICES 100000
+#define RENDERER_VERTEX_SIZE 8
+#define RENDERER_BUFFER_SIZE MAX_VERTICES * RENDERER_VERTEX_SIZE
+#define INDEX_AMOUNT MAX_VERTICES * 3
+
 #include "Renderer.h"
 #include "../Buffers/IndexBuffer.h"
 #include "../Buffers/VertexBuffer.h"
@@ -34,13 +39,14 @@ namespace Somnium
 			private:
 				std::vector<Maths::Matrix4> m_Transformations;
 
-				Buffers::VertexArray*  m_VAO;
-				Buffers::VertexBuffer* m_VBO;
+				GLuint m_VAO;
+				GLuint m_VBO;
 				Buffers::IndexBuffer* m_IBO;
 
-				GLfloat* m_VertexDataBuffer;
+				Vertex* m_VertexDataBuffer;
 				unsigned int m_CurrentVertexCount = 0;
 				unsigned int m_CurrentIndex;
+				bool m_Mapped = false;
 			};
 		}
 	}

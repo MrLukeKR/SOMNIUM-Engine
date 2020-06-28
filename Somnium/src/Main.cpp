@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
 	std::set<std::string> flags = std::set<std::string>();
 	for (int f = 0; f < argc; f++) flags.insert(argv[f]);
 
-	Window myWindow("Somnium Engine", 1920, 1080, (flags.find("-f") != flags.end()) || (flags.find("--fullscreen") != flags.end()));
+	Window myWindow("Somnium Engine", 1920 , 1080, (flags.find("-f") != flags.end()) || (flags.find("--fullscreen") != flags.end()));
 
 	Buffers::FrameBuffer::setWindow(&myWindow);
 
@@ -81,8 +81,7 @@ int main(int argc, char** argv) {
 	currentGame = new FollowingMonkeys();
 
 	currentGame->init(myWindow);
-	Graphics::Cameras::Camera* mainCamera = new Graphics::Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
-	currentGame->setActiveCamera(mainCamera);
+	static Graphics::Cameras::Camera* mainCamera = currentGame->getActiveCamera();
 
 #ifdef ENABLE_DEBUG_CAMERA
 	Utilities::Debug::initialiseDebugCamera(myWindow.getWidth(), myWindow.getHeight(), mainCamera, arial, textShader);
@@ -94,7 +93,7 @@ int main(int argc, char** argv) {
 	Networking::Centralised::Server* myServer = new Networking::Centralised::Server();
 	myServer->run();
 
-	Renderers::BatchRenderer* renderer = new Renderers::BatchRenderer(myWindow, mainCamera);
+	Renderers::Renderer* renderer = new Renderers::SerialRenderer(myWindow, mainCamera);
 	PhysicsEngine* physics = new PhysicsEngine();
 
 
@@ -128,16 +127,12 @@ int main(int argc, char** argv) {
 		Utilities::FrameRate::updateDeltaTime();
 		
 		currentGame->tick(Utilities::FrameRate::deltaTime);
-		renderer->updateCamera(Utilities::FrameRate::deltaTime);
 		
-		physics->update(Utilities::FrameRate::deltaTime);
-
-		renderer->beginMapping();
-		renderer->submitToQueue(currentGame->getObjects());
-		renderer->endMapping();
-
 		// physics->submitToQueue(currentGame->getObjects());
-
+		physics->update(Utilities::FrameRate::deltaTime);
+		
+		renderer->updateCamera(Utilities::FrameRate::deltaTime);		
+		renderer->submitToQueue(currentGame->getObjects());
 
 		//3. Draw objects
 

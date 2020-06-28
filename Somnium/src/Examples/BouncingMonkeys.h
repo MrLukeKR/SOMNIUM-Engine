@@ -3,7 +3,6 @@
 
 #include "../Graphics/Window.h"
 #include "../Graphics/Mesh.h"
-#include "../Graphics/Font.h"
 #include "../Graphics/Cameras/FlyCamera.h"
 #include "../Graphics/PostProcessing/PostProcessor.h"
 #include "../Graphics/PostProcessing/Lighting/Bloom.h"
@@ -18,10 +17,10 @@ using namespace Somnium;
 using namespace Graphics;
 using namespace Maths;
 
-class PhysicsMonkeys : public Game
+class BouncingMonkeys : public Game
 {
 public:
-	PhysicsMonkeys() : Game("Physics Monkeys") {}
+	BouncingMonkeys() : Game("Bouncing Monkeys") {}
 
 	/*
 	This example will spawn a set of monkeys in set positions and apply a physics simulation to each of them
@@ -30,22 +29,12 @@ public:
 	void init(Window& myWindow) {
 		m_PhysicsEngine = new Logic::Physics::PhysicsEngine();
 		
-		m_MainCamera = new Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0));
-
-		Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
+		m_Cameras.insert({ "Main", new Cameras::FlyCamera(45, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 10, 0), Vector3(200, 90, 0)) });
+		m_MainCamera = m_Cameras.at("Main");
 
 		m_Shaders.insert({ "PBR/basic", new Shaders::Shader("Resources/Graphics/Shaders/PBR/basic.vs", "Resources/Graphics/Shaders/PBR/basic.fs") });
-		m_Shaders.insert({ "Basic/basicText", new Shaders::Shader("Resources/Graphics/Shaders/Basic/basicText.vs", "Resources/Graphics/Shaders/Basic/basicText.fs") });
 
-#ifdef ENABLE_DEBUG_CAMERA
-		Shaders::Shader* naviShader = new Shaders::Shader("Resources/Graphics/Shaders/Debug/navigation.vs", "Resources/Graphics/Shaders/Debug/navigation.fs");
-#endif
-
-		Graphics::Shaders::Shader* textShader = m_Shaders.at("Basic/basicText");
-		textShader->enable();
-		textShader->setMatrix4("projection", Matrix4::orthographic(0, myWindow.getWidth(), 0, myWindow.getHeight(), -1.0f, 100.0f));
-
-		Graphics::Shaders::Shader* shader = m_Shaders.at("PBR/basic");
+			Graphics::Shaders::Shader* shader = m_Shaders.at("PBR/basic");
 		shader->enable();
 		shader->setVector3("albedo", Maths::Vector3(1, 1, 1));
 		shader->setFloat("ao", 0.01);
@@ -80,8 +69,8 @@ public:
 		m_Objects.insert({ "monkey", new RenderableObject(new Mesh(*m_Meshes.at("monkey"))) });
 
 		m_Objects.at("monkey")->setScale(1, 1, 1);
-		m_Objects.at("monkey")->setPosition(-10, 5, -10);
-		m_Objects.at("monkey")->rotate(0, 45, 0);
+		m_Objects.at("monkey")->setPosition(0, 10, 30);
+		m_Objects.at("monkey")->setOrientation(0, 180, 0);
 	}
 
 	void tick(int mouseX, int mouseY)

@@ -17,7 +17,7 @@ namespace Somnium
 		const std::map<char*, Graphics::RenderableObject*>& getObjects() const { return m_Objects; }
 		const std::string& getName() const { return m_GameName; }
 
-		Graphics::Cameras::Camera* getActiveCamera() const { return m_MainCamera; }
+		Graphics::Cameras::Camera* const getActiveCamera() const { return m_MainCamera; }
 		void setActiveCamera(Graphics::Cameras::Camera* camera) { m_MainCamera = camera; }
 		void setActiveCamera(Graphics::Cameras::Camera& camera) { m_MainCamera = &camera; }
 	
