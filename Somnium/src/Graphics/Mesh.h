@@ -36,7 +36,7 @@ namespace Somnium
 			friend class RenderableObject;
 
 		public:
-			Mesh::Mesh(Buffers::VertexArray* vertexArray, Buffers::IndexBuffer* indexBuffer, std::vector<Texture> textures, Shaders::Shader& shader)
+			Mesh(Buffers::VertexArray* vertexArray, Buffers::IndexBuffer* indexBuffer, std::vector<Texture> textures, Shaders::Shader& shader)
 				: m_VAO(vertexArray), m_IBO(indexBuffer), m_Shader(shader), m_Textures(textures) {}
 
 			Mesh(std::vector<GLfloat> vertexArray, std::vector<GLushort> indexBuffer, std::vector<Texture> textures, Shaders::Shader& shader);
