@@ -11,6 +11,10 @@
 
 #include <string>
 
+#ifdef _WIN32
+	#include "../VR/OculusController.h"
+#endif
+
 namespace Somnium
 {
 	namespace Graphics

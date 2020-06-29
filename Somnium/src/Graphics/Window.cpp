@@ -119,8 +119,16 @@ namespace Somnium
 			FT_Library_Version(m_FreeType, &ftMaj, &ftMin, &ftPatch);
 
 			cout << ftMaj << "." << ftMin << "." << ftPatch << endl;
-			cout << endl;
 
+
+			/* OCULUS VR */
+#ifdef _WIN32
+			cout << " LibOVR\t\t" << OVR_VERSION_STRING << endl;
+			VR::OculusController vr = VR::OculusController();
+			
+			vr.printHMDInformation();
+#endif
+			cout << endl;
 			/* DEBUG MODE */
 
 #ifdef DEBUG_MODE

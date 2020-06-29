@@ -36,7 +36,6 @@
 #include "Logic/Game.h"
 
 #include "Examples/AllExamples.h"
-#include "VR/OculusController.h"
 
 using namespace Somnium;
 using namespace Audio;
@@ -62,7 +61,6 @@ int main(int argc, char** argv) {
 	for (int f = 0; f < argc; f++) flags.insert(argv[f]);
 
 	Window myWindow("Somnium Engine", 1920 , 1080, (flags.find("-f") != flags.end()) || (flags.find("--fullscreen") != flags.end()));
-	VR::OculusController vr = VR::OculusController();
 
 	Buffers::FrameBuffer::setWindow(&myWindow);
 
