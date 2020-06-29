@@ -75,8 +75,8 @@
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\emscripten\include;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\GLEW\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Dependencies\GLFW\include</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\freetype\objs;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\oculus\LibOVRKernel\src;$(SolutionDir)Dependencies\oculus\LibOVR\include;$(SolutionDir)Dependencies\emscripten\include;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\GLEW\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Dependencies\GLFW\include</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\freetype\objs;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\oculus\lib;$(SolutionDir)Dependencies\GLFW\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\Intermediates\</IntDir>
   </PropertyGroup>
@@ -108,7 +108,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\freetype\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\oculus\include;$(SolutionDir)Dependencies\freetype\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\VR\OculusController.h" />
     <ClInclude Include="src\Examples\AllExamples.h" />
     <ClInclude Include="src\Examples\FollowingMonkeys.h" />
     <ClInclude Include="src\Examples\LookingMonkeys.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="src\Utilities\FrameRateUtilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\VR\OculusController.cpp" />
     <ClCompile Include="src\Graphics\Cameras\FirstPersonCamera.cpp" />
     <ClCompile Include="src\Logic\Physics\RigidBody.cpp" />
     <ClCompile Include="src\Examples\RandomMonkeys.h" />

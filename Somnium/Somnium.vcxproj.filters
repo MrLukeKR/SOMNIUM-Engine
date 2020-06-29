@@ -126,6 +126,12 @@
     <Filter Include="Header Files\Graphics\Cameras">
       <UniqueIdentifier>{a8359fd4-674f-45e9-8e51-a9d391187995}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\VR">
+      <UniqueIdentifier>{78cc7fe6-ddf0-4fb5-99d9-ad57a6da18bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\VR">
+      <UniqueIdentifier>{d92b9878-898f-41d6-91ee-f9cf73ff1bc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Window.h">
@@ -281,6 +287,9 @@
     <ClInclude Include="src\Examples\BouncingMonkeys.h">
       <Filter>Header Files\Examples</Filter>
     </ClInclude>
+    <ClInclude Include="src\VR\OculusController.h">
+      <Filter>Header Files\VR</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -381,6 +390,9 @@
     </ClCompile>
     <ClCompile Include="src\Graphics\Cameras\FirstPersonCamera.cpp">
       <Filter>Source Files\Graphics\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VR\OculusController.cpp">
+      <Filter>Source Files\VR</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
