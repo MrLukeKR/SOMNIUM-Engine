@@ -57,22 +57,22 @@ namespace Somnium
 
 		protected:
 			void rotate(float xAngle, float yAngle, float zAngle) { rotate(Maths::Vector3(xAngle, yAngle, zAngle)); }
-			void rotate(Maths::Vector3 rotationOffset);
+			void rotate(const Maths::Vector3& rotationOffset);
 
 			void scale(float x, float y, float z);
-			void scale(Maths::Vector3 scaleAmount);
+			void scale(const Maths::Vector3& scaleAmount);
 			void scale(float uniformScale);
 
 			void translate(float xOffset, float yOffset, float zOffset);
-			void translate(Maths::Vector3 offset);
+			void translate(const Maths::Vector3& offset);
 
-			void setPosition(Maths::Vector3& position) { m_Position = position; }
+			void setPosition(const Maths::Vector3& position) { m_Position = position; }
 			void setPosition(float x, float y, float z) { m_Position = Maths::Vector3(x, y, z); }
 
-			void setOrientation(Maths::Vector3& orientation) { m_Orientation = orientation; }
+			void setOrientation(const Maths::Vector3& orientation) { m_Orientation = orientation; }
 			void setOrientation(float x, float y, float z) { m_Orientation = Maths::Vector3(x, y, z); }
 
-			void setScale(Maths::Vector3& scale) { m_Scale = scale; }
+			void setScale(const Maths::Vector3& scale) { m_Scale = scale; }
 			void setScale(float x, float y, float z) { m_Scale = Maths::Vector3(x, y, z); }
 
 

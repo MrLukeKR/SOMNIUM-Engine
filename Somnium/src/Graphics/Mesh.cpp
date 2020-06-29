@@ -15,7 +15,7 @@ namespace Somnium
 			scale(Maths::Vector3(x, y, z));
 		}
 
-		void Mesh::scale(Maths::Vector3 scaleAmount)
+		void Mesh::scale(const Maths::Vector3& scaleAmount)
 		{
 			m_Scale *= scaleAmount;
 		}
@@ -25,12 +25,12 @@ namespace Somnium
 			translate(Maths::Vector3(x, y, z));
 		}
 
-		void Mesh::translate(Maths::Vector3 translation)
+		void Mesh::translate(const Maths::Vector3& translation)
 		{
 			m_Position += translation;
 		}
 
-		void Mesh::rotate(Maths::Vector3 rotation)
+		void Mesh::rotate(const Maths::Vector3& rotation)
 		{
 			m_Orientation += rotation;
 		}
