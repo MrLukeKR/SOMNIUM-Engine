@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\oculus\LibOVRKernel\src;$(SolutionDir)Dependencies\oculus\LibOVR\include;$(SolutionDir)Dependencies\emscripten\include;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\GLEW\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Dependencies\GLFW\include</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\oculus\LibOVR\include;$(SolutionDir)Dependencies\emscripten\include;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\GLEW\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Dependencies\GLFW\include</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\freetype\objs;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\oculus\LibOVR\lib;$(SolutionDir)Dependencies\GLFW\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\Intermediates\</IntDir>

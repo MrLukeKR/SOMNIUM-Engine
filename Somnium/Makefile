@@ -14,7 +14,7 @@ TARGET := SOMNIUM_BUILD
 TARGETOSX := SOMNIUMOSX
 TARGETWEB := SOMNIUM_web.html
 
-SRCS := $(shell find $(SRC_DIR) -name "*.cpp")
+SRCS := $(shell find $(SRC_DIR) -name "*.cpp" -not -path ./src/VR)
 OBJS:=$(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 WEBOBJS:=$(patsubst %.cpp,$(OBJ_DIR)/%.bc,$(SRCS))
 

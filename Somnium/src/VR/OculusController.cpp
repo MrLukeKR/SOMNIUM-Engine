@@ -1,50 +1,52 @@
-#include "OculusController.h"
-#include <iostream>
+#ifdef _WIN32
+	#include "OculusController.h"
+	#include <iostream>
 
-namespace Somnium
-{
-	namespace VR
+	namespace Somnium
 	{
-		OculusController::OculusController()
+		namespace VR
 		{
-			m_Status = ovr_Initialize(nullptr);
-			
-			if (OVR_FAILURE(m_Status))
-				return;
-
-			m_Status = ovr_Create(&m_Session, &m_LUID);
-			if (OVR_FAILURE(m_Status))
+			OculusController::OculusController()
 			{
-				std::cerr << "Failed to initialise LibOVR" << std::endl;
-				ovr_Shutdown();
-				return;
-			}
-				
-			m_Description = ovr_GetHmdDesc(m_Session);
+				m_Status = ovr_Initialize(nullptr);
 			
-			m_Resolution = m_Description.Resolution;
-		}
+				if (OVR_FAILURE(m_Status))
+					return;
 
-		std::string OculusController::getSDKInformation() const
-		{
-			return OVR_VERSION_STRING;
-		}
+				m_Status = ovr_Create(&m_Session, &m_LUID);
+				if (OVR_FAILURE(m_Status))
+				{
+					std::cerr << "Failed to initialise LibOVR" << std::endl;
+					ovr_Shutdown();
+					return;
+				}
+				
+				m_Description = ovr_GetHmdDesc(m_Session);
+			
+				m_Resolution = m_Description.Resolution;
+			}
 
-		void OculusController::printHMDInformation() const
-		{
-			if (OVR_FAILURE(m_Status))
-				return;
+			std::string OculusController::getSDKInformation() const
+			{
+				return OVR_VERSION_STRING;
+			}
 
-			std::cout << "Connected HMD Information:" << std::endl;
-			std::cout << "\tProduct: " << " " << m_Description.ProductName << " by " << m_Description.Manufacturer << " [" << m_Description.SerialNumber << ']' << std::endl;
-			std::cout << "\tFirmware Version: " << m_Description.FirmwareMajor << '.' << m_Description.FirmwareMinor << std::endl;
-			std::cout << "\tResolution: " << m_Description.Resolution.w << "x" << m_Description.Resolution.h << std::endl;
-		}
+			void OculusController::printHMDInformation() const
+			{
+				if (OVR_FAILURE(m_Status))
+					return;
 
-		OculusController::~OculusController()
-		{
-			ovr_Destroy(m_Session);
-			ovr_Shutdown();
+				std::cout << "Connected HMD Information:" << std::endl;
+				std::cout << "\tProduct: " << " " << m_Description.ProductName << " by " << m_Description.Manufacturer << " [" << m_Description.SerialNumber << ']' << std::endl;
+				std::cout << "\tFirmware Version: " << m_Description.FirmwareMajor << '.' << m_Description.FirmwareMinor << std::endl;
+				std::cout << "\tResolution: " << m_Description.Resolution.w << "x" << m_Description.Resolution.h << std::endl;
+			}
+
+			OculusController::~OculusController()
+			{
+				ovr_Destroy(m_Session);
+				ovr_Shutdown();
+			}
 		}
 	}
-}
+#endif
