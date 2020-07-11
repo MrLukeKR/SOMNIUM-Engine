@@ -12,7 +12,7 @@ namespace Somnium
 		/* Methods */
 		public:
 			RenderableObject() = default;
-			RenderableObject(Mesh* mesh, const Maths::Vector3 &position = Maths::Vector3(0,0,0), const Maths::Vector3 &scale = Maths::Vector3(1, 1, 1), const Maths::Vector3 &orientation = Maths::Vector3(0, 0, 0))
+			RenderableObject(Mesh* mesh, const Maths::Vector3 &position = Maths::Vector3(0,0,0), const Maths::Vector3 &scale = Maths::Vector3(1, 1, 1), const Maths::Quaternion &orientation = Maths::Quaternion())
 				: m_Mesh(mesh), m_Position(position), m_Scale(scale), m_Orientation(orientation){};
 
 			~RenderableObject() {};
@@ -26,6 +26,10 @@ namespace Somnium
 			void setScale(Maths::Vector3 scale) { setScale(scale.x, scale.y, scale.z); }
 			void setOrientation(float x, float y, float z);
 			void setOrientation(Maths::Vector3 orientation) { setOrientation(orientation.x, orientation.y, orientation.z); }
+			void setOrientation(Maths::Quaternion orientation) { 
+				m_Orientation = orientation; 		
+				m_Mesh->setOrientation(m_Orientation);
+			}
 
 			inline const Maths::Vector3 getPosition() const { return m_Position; }
 
@@ -53,7 +57,7 @@ namespace Somnium
 			Mesh* m_Mesh;
 			Maths::Vector3 m_Position;
 			Maths::Vector3 m_Scale;
-			Maths::Vector3 m_Orientation;
+			Maths::Quaternion m_Orientation;
 			Maths::Vector3 m_Front = Maths::Vector3(0, 0, 1);
 		};
 	}

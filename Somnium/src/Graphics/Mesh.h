@@ -10,6 +10,8 @@
 #include "Shaders/Shader.h"
 #include "Buffers/IndexBuffer.h"
 #include "Buffers/VertexArray.h"
+#include "../Logic/Maths/Quaternion.h"
+
 #include <vector>
 #include <string>
 #include <deque>
@@ -69,8 +71,9 @@ namespace Somnium
 			void setPosition(const Maths::Vector3& position) { m_Position = position; }
 			void setPosition(float x, float y, float z) { m_Position = Maths::Vector3(x, y, z); }
 
-			void setOrientation(const Maths::Vector3& orientation) { m_Orientation = orientation; }
-			void setOrientation(float x, float y, float z) { m_Orientation = Maths::Vector3(x, y, z); }
+			void setOrientation(const Maths::Quaternion& orientation) { m_Orientation = orientation; }
+			void setOrientation(const Maths::Vector3& orientation) { m_Orientation = Maths::Quaternion::fromEulerAngles(orientation); }
+			void setOrientation(float x, float y, float z) { m_Orientation = Maths::Quaternion::fromEulerAngles(x, y, z); }
 
 			void setScale(const Maths::Vector3& scale) { m_Scale = scale; }
 			void setScale(float x, float y, float z) { m_Scale = Maths::Vector3(x, y, z); }
@@ -88,7 +91,7 @@ namespace Somnium
 			const std::vector<Texture> m_Textures;
 
 			Maths::Vector3 m_Position = Maths::Vector3(0);
-			Maths::Vector3 m_Orientation = Maths::Vector3(0);
+			Maths::Quaternion m_Orientation = Maths::Quaternion();
 			Maths::Vector3 m_Scale = Maths::Vector3(1);
 		};
 	}

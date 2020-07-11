@@ -15,14 +15,24 @@ namespace Somnium
 			{
 				Vector4 vw = Vector4();
 				struct {
-					Vector3 v;
+					Vector3 v; 
 					float w;
+				};
+
+				struct {
+					float x, y, z, w;
 				};
 			};
 
-			Quaternion(float x = 0, float y = 0, float z = 0, float w = 1) { vw = Vector4(x, y, z, w); }
+			static Quaternion fromEulerAngles(Vector3 eulerAngles);
+			static Quaternion fromEulerAngles(float xAngle, float yAngle, float zAngle);
+			static Quaternion fromAxisAngle(float angle, Maths::Vector3 axis);
+			
+			Vector3 toEulerAngles() const;
 
-			Quaternion(Vector3 newV, float newW = 1)
+			Quaternion(float x, float y, float z, float w) { vw = Vector4(x, y, z, w); }
+
+			Quaternion(Vector3 newV = Vector3(), float newW = 0)
 			{
 				v = newV;
 				w = newW;
@@ -42,13 +52,17 @@ namespace Somnium
 			Quaternion &operator-=(const float &scalar);
 			Quaternion operator-  (const float &scalar) const;
 
-			Quaternion &operator*=(const Quaternion &rhs);
+			Quaternion& operator*=(const Quaternion &rhs);
+			Quaternion operator*(const Quaternion& rhs) const;
+
+			Quaternion& operator*=  (const float& scalar);
 			Quaternion operator*  (const float &scalar) const;
 
 			//TODO: Make operators global in order to have 2 way operator overloading
 
-			Quaternion &operator/=(const Quaternion &rhs);
-			Quaternion operator/ (const float &scalar) const;
+			float magnitude() const;
+			Quaternion conjugate() const;
+			Quaternion inverse() const;
 
 			Quaternion slerp(const Quaternion &quaternion1, const Quaternion &quaternion2, float t) const;
 

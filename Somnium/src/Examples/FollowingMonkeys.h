@@ -30,7 +30,7 @@ public:
 	*/
 
 	void init(Window& myWindow) {
-		m_Cameras.insert({ "Main", new Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, 90, 0)) });
+		m_Cameras.insert({ "Main", new Cameras::FlyCamera(30, (float)myWindow.getWidth() / myWindow.getHeight(), 0.1f, 1000.0f, false, Vector3(0, 0, 0), Vector3(180, -90, 0)) });
 		m_MainCamera = m_Cameras.at("Main");
 		
 		m_Shaders.insert({ "PBR/basic", new Shaders::Shader("Resources/Graphics/Shaders/PBR/basic.vs", "Resources/Graphics/Shaders/PBR/basic.fs") });

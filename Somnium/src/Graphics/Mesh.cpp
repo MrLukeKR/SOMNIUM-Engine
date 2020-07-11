@@ -32,7 +32,7 @@ namespace Somnium
 
 		void Mesh::rotate(const Maths::Vector3& rotation)
 		{
-			m_Orientation += rotation;
+			m_Orientation *= Maths::Quaternion::fromEulerAngles(rotation);
 		}
 
 		void Mesh::setVertexData(std::vector<Maths::Vector3> vertexData) 
@@ -45,12 +45,9 @@ namespace Somnium
 		const Maths::Matrix4 Mesh::getModelMatrix() const
 		{	
 			Maths::Matrix4 modelMatrix = Maths::Matrix4::identity();
-			Maths::Quaternion rotation = Maths::Quaternion(m_Orientation);
 
 			modelMatrix *= Maths::Matrix4::scale(m_Scale) *
-				Maths::Matrix4::rotationZ(m_Orientation.z) *
-				Maths::Matrix4::rotationY(m_Orientation.y) *
-				Maths::Matrix4::rotationX(-m_Orientation.x) *
+				m_Orientation.toTransformationMatrix() *
 				Maths::Matrix4::translation(m_Position);
 
 			return modelMatrix;

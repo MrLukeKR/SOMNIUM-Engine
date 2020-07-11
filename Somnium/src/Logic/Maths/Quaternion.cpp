@@ -6,6 +6,67 @@ namespace Somnium
 {
 	namespace Maths
 	{
+		Quaternion Quaternion::fromAxisAngle(float angle, Maths::Vector3 axis)
+		{
+			float halfAngle = angle * .5f;
+			float sinA = sin(halfAngle);
+			Quaternion q;
+
+			q.x = axis.x * sinA;
+			q.y = axis.y * sinA;
+			q.z = axis.z * sinA;
+			q.w = cos(halfAngle);
+
+			return q;
+		}
+
+		Quaternion Quaternion::fromEulerAngles(Vector3 eulerAngles)
+		{
+			return fromEulerAngles(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+		}
+
+		Quaternion Quaternion::fromEulerAngles(float xAngle, float yAngle, float zAngle)
+		{
+			// std::cout << "Euler: (" << xAngle << ", " << yAngle << ", " << zAngle << ")\t";
+
+			Quaternion newQ;
+
+			float cosX = cos(xAngle * 0.5),
+				  sinX = sin(xAngle * 0.5),
+				  cosY = cos(yAngle * 0.5),
+				  sinY = sin(yAngle * 0.5),
+				  cosZ = cos(zAngle * 0.5),
+				  sinZ = sin(zAngle * 0.5);
+
+			newQ.w = cosZ * cosY * cosX + sinZ * sinY * sinX;
+			newQ.x = sinZ * cosY * cosX - cosZ * sinY * sinX;
+			newQ.y = cosZ * sinY * cosX + sinZ * cosY * sinX;
+			newQ.z = cosZ * cosY * sinX - sinZ * sinY * cosX;
+
+			Vector3 angles = newQ.toEulerAngles();
+
+			// std::cout << "Quaternion: (" << angles.x << ", " << angles.y << ", " << angles.z << ")" << std::endl;
+
+			return newQ;
+		}
+
+		Vector3 Quaternion::toEulerAngles() const
+		{
+			Vector3 eulerAngles;
+
+			float sinX_cosY = 2 * (w * x, + y * z);
+			float cosX_cosY = 1 - 2 * (x * x + y * y);
+			float sinY = 2 * (w * y - z * x);
+			float sinZ_cosY = 2 * (w * z + x * y);
+			float cosZ_cosY = 1 - 2 * (y * y + z * z);
+			
+			eulerAngles.x = atan2(sinX_cosY, cosX_cosY);
+			eulerAngles.y = abs(sinY) >= 1 ? copysign(PI / 2, sinY) : asin(sinY);
+			eulerAngles.z = atan2(sinZ_cosY, cosZ_cosY);
+
+			return eulerAngles;
+		}
+
 		Quaternion& Quaternion::operator+=(const Quaternion &rhs)
 		{
 			vw += rhs.vw;
@@ -39,40 +100,62 @@ namespace Somnium
 			return Quaternion(vw - rhs.vw);
 		}
 
-		Quaternion &Quaternion::operator-=(const float &scalar)
+		Quaternion& Quaternion::operator-=(const float &scalar)
 		{
+			vw -= scalar;
 
 			return *this;
 		}
 
 		Quaternion Quaternion::operator-(const float &scalar) const
 		{
-
-			return Quaternion();
+			return Quaternion(vw - scalar);
 		}
 
-		Quaternion &Quaternion::operator*=(const Quaternion &rhs)
+		Quaternion Quaternion::operator*(const Quaternion& rhs) const
 		{
+			// Grassman product
+			float angle = w * rhs.w - v.dot(rhs.v);
+
+			Maths::Vector3 imaginary = rhs.v * w + v * rhs.w + v * rhs.v;
+
+			return Quaternion(imaginary, angle);
+		}
+
+		Quaternion& Quaternion::operator*=(const Quaternion &rhs)
+		{
+			(*this) = (*this) * rhs;
 
 			return *this;
 		}
 
 		Quaternion Quaternion::operator* (const float &scalar) const
 		{
-
-			return Quaternion();
+			return Quaternion(vw * scalar);
 		}
 
-		Quaternion &Quaternion::operator/=(const Quaternion &rhs)
+		Quaternion& Quaternion::operator*= (const float& scalar)
 		{
+			vw *= scalar;
 
 			return *this;
 		}
 
-		Quaternion Quaternion::operator/ (const float &scalar) const
+		float Quaternion::magnitude() const
 		{
+			return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + w * w);
+		}
 
-			return Quaternion();
+		Quaternion Quaternion::inverse() const
+		{
+			Quaternion conj = conjugate();
+
+			return conj * (1 / magnitude());
+		}
+
+		Quaternion Quaternion::conjugate() const
+		{
+			return Quaternion(-v, w);
 		}
 
 		Matrix4 Quaternion::toTransformationMatrix() const
@@ -82,15 +165,15 @@ namespace Somnium
 			Vector4 nvw = vw / (float)sqrt(dot(vw, vw)); // Normalised vw vector
 
 			float
-				xSq = vw.x * vw.x,
-				ySq = vw.y * vw.y,
-				zSq = vw.z * vw.z,
-				xy  = vw.x * vw.y,
-				zw  = vw.z * vw.w,
-				yw  = vw.y * vw.w,
-				yz  = vw.y * vw.z,
-				xw  = vw.x * vw.w,
-				xz  = vw.x * vw.z;
+				xSq = x * x,
+				ySq = y * y,
+				zSq = z * z,
+				xy  = x * y,
+				zw  = z * w,
+				yw  = y * w,
+				yz  = y * z,
+				xw  = x * w,
+				xz  = x * z;
 
 			transformationMatrix.elements2D[0][0] = 1 - 2 * (ySq + zSq);
 			transformationMatrix.elements2D[1][0] = 2 * (xy + zw);
