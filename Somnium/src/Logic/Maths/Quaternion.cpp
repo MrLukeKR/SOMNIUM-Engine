@@ -15,7 +15,7 @@ namespace Somnium
 			q.x = axis.x * sinA;
 			q.y = axis.y * sinA;
 			q.z = axis.z * sinA;
-			q.w = cos(halfAngle);
+			q.w_sep = cos(halfAngle);
 
 			return q;
 		}
@@ -38,7 +38,7 @@ namespace Somnium
 				  cosZ = cos(zAngle * 0.5),
 				  sinZ = sin(zAngle * 0.5);
 
-			newQ.w = cosZ * cosY * cosX + sinZ * sinY * sinX;
+			newQ.w_sep = cosZ * cosY * cosX + sinZ * sinY * sinX;
 			newQ.x = sinZ * cosY * cosX - cosZ * sinY * sinX;
 			newQ.y = cosZ * sinY * cosX + sinZ * cosY * sinX;
 			newQ.z = cosZ * cosY * sinX - sinZ * sinY * cosX;
@@ -54,10 +54,10 @@ namespace Somnium
 		{
 			Vector3 eulerAngles;
 
-			float sinX_cosY = 2 * (w * x, + y * z);
+			float sinX_cosY = 2 * (w_sep * x, + y * z);
 			float cosX_cosY = 1 - 2 * (x * x + y * y);
-			float sinY = 2 * (w * y - z * x);
-			float sinZ_cosY = 2 * (w * z + x * y);
+			float sinY = 2 * (w_sep * y - z * x);
+			float sinZ_cosY = 2 * (w_sep * z + x * y);
 			float cosZ_cosY = 1 - 2 * (y * y + z * z);
 			
 			eulerAngles.x = atan2(sinX_cosY, cosX_cosY);
@@ -115,9 +115,9 @@ namespace Somnium
 		Quaternion Quaternion::operator*(const Quaternion& rhs) const
 		{
 			// Grassman product
-			float angle = w * rhs.w - v.dot(rhs.v);
+			float angle = w_sep * rhs.w_sep - v.dot(rhs.v);
 
-			Maths::Vector3 imaginary = rhs.v * w + v * rhs.w + v * rhs.v;
+			Maths::Vector3 imaginary = rhs.v * w_sep + v * rhs.w_sep + v * rhs.v;
 
 			return Quaternion(imaginary, angle);
 		}
@@ -143,7 +143,7 @@ namespace Somnium
 
 		float Quaternion::magnitude() const
 		{
-			return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + w * w);
+			return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + w_sep * w_sep);
 		}
 
 		Quaternion Quaternion::inverse() const
@@ -155,7 +155,7 @@ namespace Somnium
 
 		Quaternion Quaternion::conjugate() const
 		{
-			return Quaternion(-v, w);
+			return Quaternion(-v, w_sep);
 		}
 
 		Matrix4 Quaternion::toTransformationMatrix() const
@@ -169,10 +169,10 @@ namespace Somnium
 				ySq = y * y,
 				zSq = z * z,
 				xy  = x * y,
-				zw  = z * w,
-				yw  = y * w,
+				zw  = z * w_sep,
+				yw  = y * w_sep,
 				yz  = y * z,
-				xw  = x * w,
+				xw  = x * w_sep,
 				xz  = x * z;
 
 			transformationMatrix.elements2D[0][0] = 1 - 2 * (ySq + zSq);
@@ -216,7 +216,7 @@ namespace Somnium
 
 		inline float Quaternion::dot(const Quaternion & quaternion1, const Quaternion & quaternion2)
 		{
-			return Vector3::dot(quaternion1.v, quaternion2.v) + quaternion1.w * quaternion2.w;
+			return Vector3::dot(quaternion1.v, quaternion2.v) + quaternion1.w_sep * quaternion2.w_sep;
 		}
 
 		inline Quaternion Quaternion::normalise(const Quaternion &quaternion)

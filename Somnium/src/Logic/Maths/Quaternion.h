@@ -16,11 +16,11 @@ namespace Somnium
 				Vector4 vw = Vector4();
 				struct {
 					Vector3 v; 
-					float w;
+					float w_vec;
 				};
 
 				struct {
-					float x, y, z, w;
+					float x, y, z, w_sep;
 				};
 			};
 
@@ -35,7 +35,7 @@ namespace Somnium
 			Quaternion(Vector3 newV = Vector3(), float newW = 0)
 			{
 				v = newV;
-				w = newW;
+				w_vec = newW;
 			}
 
 			Quaternion(Vector4 newVW ) { vw = newVW; }

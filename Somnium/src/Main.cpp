@@ -167,6 +167,7 @@ int main(int argc, char** argv) {
 		Utilities::Debug::drawReferenceGrid();
 		Utilities::Debug::updateDebugCamera();
 #endif
+#ifdef _WIN32
 		auto ts = VR::OculusController::getInstance()->getTrackingState();
 		ovrPoseStatef headPose = ts.HeadPose;
 		ovrPosef tempPose = headPose.ThePose;
@@ -177,6 +178,7 @@ int main(int argc, char** argv) {
 		snprintf(buffer, 1024, "HMD ROT [%f, %f, %f]", orient.x, orient.y, orient.z);
 
 		mainCamera->setUIText("OculusState", buffer);
+#endif
 
 		//4. Post Processing
 		mainCamera->updateUI();
