@@ -77,7 +77,9 @@ namespace Somnium
 				/* UI Controls */
 			
 				void addUIObject(std::string key, UI::UIObject* object) { m_UIObjects.insert(std::pair<std::string, UI::UIObject*>(key, object)); }
-				void removeUIObject();
+				void setUIText(std::string key, std::string text) { ((UI::UIText*) m_UIObjects.at(key))->setText(text.c_str()); }
+
+				void removeUIObject(std::string key) { m_UIObjects.erase(key); }
 
 				void updateUI() {
 #ifdef ENABLE_DEBUG_CAMERA

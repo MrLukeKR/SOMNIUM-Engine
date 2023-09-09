@@ -124,9 +124,9 @@ namespace Somnium
 			/* OCULUS VR */
 #ifdef _WIN32
 			cout << " LibOVR\t\t" << OVR_VERSION_STRING << endl;
-			VR::OculusController vr = VR::OculusController();
+			VR::OculusController::init();
 			
-			vr.printHMDInformation();
+			VR::OculusController::getInstance()->printHMDInformation();
 #endif
 			cout << endl;
 			/* DEBUG MODE */

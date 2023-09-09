@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
 
 	Buffers::FrameBuffer frameBuffer;
 
-	currentGame = new FollowingMonkeys();
+	currentGame = new LookingMonkeys();
 
 	currentGame->init(myWindow);
 	static Graphics::Cameras::Camera* mainCamera = currentGame->getActiveCamera();
@@ -102,14 +102,18 @@ int main(int argc, char** argv) {
 	else
 	{
 		currentGame->init(myWindow);
-		cout << "Loaded: '" << currentGame->getName() << "'" << endl;
+		std::cout << "Loaded: '" << currentGame->getName() << "'" << endl;
 	}
 
-	cout << "---------RUNNING GAME LOOP---------" << endl;
+	std::cout << "---------RUNNING GAME LOOP---------" << endl;
 
 #ifdef WEB_BUILD
 	function<void()> webMain = [&]() {
 #else
+
+	Graphics::UI::UIText *oculusState = new Graphics::UI::UIText("Test", arial, Maths::Vector2(0, myWindow.getHeight() - 125), textShader);
+	oculusState->setScale(0.5f);
+	mainCamera->addUIObject("OculusState", oculusState);
 
 	while (!myWindow.isClosed())
 	{
@@ -163,6 +167,16 @@ int main(int argc, char** argv) {
 		Utilities::Debug::drawReferenceGrid();
 		Utilities::Debug::updateDebugCamera();
 #endif
+		auto ts = VR::OculusController::getInstance()->getTrackingState();
+		ovrPoseStatef headPose = ts.HeadPose;
+		ovrPosef tempPose = headPose.ThePose;
+		ovrQuatf orient = tempPose.Orientation;
+
+		char buffer[1024];
+
+		snprintf(buffer, 1024, "HMD ROT [%f, %f, %f]", orient.x, orient.y, orient.z);
+
+		mainCamera->setUIText("OculusState", buffer);
 
 		//4. Post Processing
 		mainCamera->updateUI();

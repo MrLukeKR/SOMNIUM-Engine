@@ -2,7 +2,7 @@
 	#pragma once
 
 	#pragma comment(lib, "winmm.lib")
-	#include "../../Dependencies/oculus/LibOVR/include/OVR_CAPI.h"
+	#include "../../Dependencies/oculus/LibOVR/include/OVR_CAPI_GL.h"
 	#include <string>
 
 	namespace Somnium
@@ -12,11 +12,18 @@
 			class OculusController
 			{
 			public:
+				static OculusController* init();
 				OculusController();
 				~OculusController();
 
 				std::string getSDKInformation() const;
 				void printHMDInformation() const;
+				ovrTrackingState getTrackingState() const;
+
+				static OculusController* getInstance() { return instance; }
+
+			protected:
+				static OculusController* instance;
 
 			private:
 				ovrSession m_Session;
