@@ -200,6 +200,7 @@
     <ClInclude Include="src\Graphics\Window.h" />
     <ClInclude Include="src\Utilities\FrameRateUtilities.h" />
     <ClInclude Include="src\VR\OculusTextureBuffer.h" />
+    <ClInclude Include="src\VR\OpenVRController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\VR\OculusController.cpp" />
@@ -237,6 +238,7 @@
     <ClCompile Include="src\Networking\Centralised\Server.cpp" />
     <ClCompile Include="src\Utilities\DebugTools\ReferenceGrid.cpp" />
     <ClCompile Include="src\VR\OculusTextureBuffer.cpp" />
+    <ClCompile Include="src\VR\OpenVRController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
