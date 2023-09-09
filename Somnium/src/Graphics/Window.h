@@ -44,6 +44,8 @@ namespace Somnium
 			bool isMouseButtonPressed(unsigned int) const;
 			void getMousePosition(int& x, int& y) const;
 			void getMouseScroll(int& xOffset, int& yOffset) const;
+			void setIcon(std::string path) const;
+			GLFWwindow *getWindow() const;
 
 			friend void resize(GLFWwindow*, int, int);
 

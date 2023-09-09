@@ -37,7 +37,7 @@ namespace Somnium
 				referenceGrid->draw();
 			}
 
-			void initialiseDebugCamera(const unsigned int& windowWidth, const unsigned int& windowHeight, Graphics::Cameras::Camera* camera, Graphics::Font* font, Graphics::Shaders::Shader* textShader)
+			void initialiseDebugCamera(const unsigned int& windowWidth, const unsigned int& windowHeight, Graphics::Cameras::Camera* camera, Graphics::Font* font, Graphics::Font* logoFont, Graphics::Shaders::Shader* textShader)
 			{
 				mainCamera = camera;
 
@@ -45,13 +45,13 @@ namespace Somnium
 				camPos = new Graphics::UI::UIText("CAM POS", font, Maths::Vector2(0, windowHeight - 50), textShader);
 				camRot = new Graphics::UI::UIText("CAM ROT", font, Maths::Vector2(0, windowHeight - 75), textShader);
 				camFOV = new Graphics::UI::UIText("CAM FOV", font, Maths::Vector2(0, windowHeight - 100), textShader);
-				engName = new Graphics::UI::UIText("SOMNIUM ENGINE", font, Maths::Vector2(windowWidth - 225, windowHeight - 25), textShader);
+				engName = new Graphics::UI::UIText("SOMNIUM ENGINE", logoFont, Maths::Vector2(windowWidth - 257, windowHeight - 27), textShader);
 				engVer = new Graphics::UI::UIText("DEVELOPMENT BUILD", font, Maths::Vector2(windowWidth - 270, windowHeight - 50), textShader);
 
 				camPos->setScale(0.5f);
 				camRot->setScale(0.5f);
 				camFOV->setScale(0.5f);
-				engName->setScale(0.5f);
+				engName->setScale(0.75f);
 				engVer->setScale(0.5f);
 				fpsCount->setScale(0.5f);
 

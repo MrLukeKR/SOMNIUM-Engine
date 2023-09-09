@@ -1,5 +1,7 @@
 #include "Window.h"
 #include <iostream>
+#define STB_IMAGE_IMPLEMENTATION
+#include "../../Dependencies/stb/include/stb_image.h"
 
 using namespace std;
 
@@ -22,6 +24,17 @@ namespace Somnium
 		Window::~Window()
 		{
 			glfwTerminate();
+		}
+
+		GLFWwindow* Window::getWindow() const {
+			return m_Window;
+		}
+
+		void Window::setIcon(std::string path) const {
+			GLFWimage images[1];
+			images[0].pixels = stbi_load(path.c_str(), &images[0].width, &images[0].height, 0, 4);
+			glfwSetWindowIcon(m_Window, 1, images);
+			stbi_image_free(images[0].pixels);
 		}
 
 		void Window::applySettings()

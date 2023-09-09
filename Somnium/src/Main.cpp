@@ -61,12 +61,15 @@ int main(int argc, char** argv) {
 	for (int f = 0; f < argc; f++) flags.insert(argv[f]);
 
 	Window myWindow("Somnium Engine", 1920 , 1080, (flags.find("-f") != flags.end()) || (flags.find("--fullscreen") != flags.end()));
+	myWindow.setIcon("Resources/Graphics/Textures/icon.png");
 
 	Buffers::FrameBuffer::setWindow(&myWindow);
 
 	PostProcessing::PostProcessor::initialise();
 
 	Font* arial = new Font("Resources/Graphics/Fonts/arial.ttf", myWindow.getFreeTypeInstance());
+	Font* hacked = new Font("Resources/Graphics/Fonts/hacked.ttf", myWindow.getFreeTypeInstance());
+
 	Shaders::Shader* textShader = new Shaders::Shader("Resources/Graphics/Shaders/Basic/basicText.vs", "Resources/Graphics/Shaders/Basic/basicText.fs");
 
 	#ifdef ENABLE_DEBUG_CAMERA
@@ -84,7 +87,7 @@ int main(int argc, char** argv) {
 	static Graphics::Cameras::Camera* mainCamera = currentGame->getActiveCamera();
 
 #ifdef ENABLE_DEBUG_CAMERA
-	Utilities::Debug::initialiseDebugCamera(myWindow.getWidth(), myWindow.getHeight(), mainCamera, arial, textShader);
+	Utilities::Debug::initialiseDebugCamera(myWindow.getWidth(), myWindow.getHeight(), mainCamera, arial, hacked, textShader);
 	Utilities::Debug::initialiseReferenceGrid(naviShader, 5, Maths::Vector3(10000));
 #endif
 
@@ -111,9 +114,11 @@ int main(int argc, char** argv) {
 	function<void()> webMain = [&]() {
 #else
 
+#ifdef _WIN32
 	Graphics::UI::UIText *oculusState = new Graphics::UI::UIText("Test", arial, Maths::Vector2(0, myWindow.getHeight() - 125), textShader);
 	oculusState->setScale(0.5f);
 	mainCamera->addUIObject("OculusState", oculusState);
+#endif
 
 	while (!myWindow.isClosed())
 	{
